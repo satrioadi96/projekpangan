@@ -84,85 +84,85 @@ Berikut grafik untuk pergerakan harga setiap komoditas pangan (periode bulanan) 
     '''
     "#### Grafik Harga Bahan Pangan Nasional dari tahun 2020-2022"
     "> ###### Pasar Modern - Komoditas Beras"
-    image = Image.open('.\output1\output-modern-Beras.jpg')
+    image = Image.open('output-modern-Beras.jpg')
     st.image(image)
     
     "> ###### Pasar Modern - Komoditas Daging Ayam"
-    image = Image.open('.\output1\output-modern-Daging Ayam.jpg')
+    image = Image.open('output-modern-Daging Ayam.jpg')
     st.image(image)
     
     "> ###### Pasar Modern - Komoditas Daging Sapi"
-    image = Image.open('.\output1\output-modern-Daging Sapi.jpg')
+    image = Image.open('output-modern-Daging Sapi.jpg')
     st.image(image)
     
     "> ###### Pasar Modern - Komoditas Telur Ayam"
-    image = Image.open('.\output1\output-modern-Telur Ayam.jpg')
+    image = Image.open('output-modern-Telur Ayam.jpg')
     st.image(image)
     
     "> ###### Pasar Modern - Komoditas Bawang Merah"
-    image = Image.open('.\output1\output-modern-Bawang Merah.jpg')
+    image = Image.open('output-modern-Bawang Merah.jpg')
     st.image(image)
     
     "> ###### Pasar Modern - Komoditas Bawang Putih"
-    image = Image.open('.\output1\output-modern-Bawang Putih.jpg')
+    image = Image.open('output-modern-Bawang Putih.jpg')
     st.image(image)
     
     "> ###### Pasar Modern - Komoditas Cabai Merah"
-    image = Image.open('.\output1\output-modern-Cabai Merah.jpg')
+    image = Image.open('output-modern-Cabai Merah.jpg')
     st.image(image)
     
     "> ###### Pasar Modern - Komoditas Cabai Rawit"
-    image = Image.open('.\output1\output-modern-Cabai Rawit.jpg')
+    image = Image.open('output-modern-Cabai Rawit.jpg')
     st.image(image)
     
     "> ###### Pasar Modern - Komoditas Minyak Goreng"
-    image = Image.open('.\output1\output-modern-Minyak Goreng.jpg')
+    image = Image.open('output-modern-Minyak Goreng.jpg')
     st.image(image)
     
     "> ###### Pasar Modern - Komoditas Gula Pasir"
-    image = Image.open('.\output1\output-modern-Gula Pasir.jpg')
+    image = Image.open('output-modern-Gula Pasir.jpg')
     st.image(image)
     
     st.write('__________________________')
     
     "> ###### Pasar Tradisional - Komoditas Beras"
-    image = Image.open('.\output1\output-tradisional-Beras.jpg')
+    image = Image.open('output-tradisional-Beras.jpg')
     st.image(image)
     
     "> ###### Pasar Tradisional - Komoditas Daging Ayam"
-    image = Image.open('.\output1\output-tradisional-Daging Ayam.jpg')
+    image = Image.open('output-tradisional-Daging Ayam.jpg')
     st.image(image)
     
     "> ###### Pasar Tradisional - Komoditas Daging Sapi"
-    image = Image.open('.\output1\output-tradisional-Daging Sapi.jpg')
+    image = Image.open('output-tradisional-Daging Sapi.jpg')
     st.image(image)
     
     "> ###### Pasar Tradisional - Komoditas Telur Ayam"
-    image = Image.open('.\output1\output-tradisional-Telur Ayam.jpg')
+    image = Image.open('output-tradisional-Telur Ayam.jpg')
     st.image(image)
     
     "> ###### Pasar Tradisional - Komoditas Bawang Merah"
-    image = Image.open('.\output1\output-tradisional-Bawang Merah.jpg')
+    image = Image.open('output-tradisional-Bawang Merah.jpg')
     st.image(image)
     
     "> ###### Pasar Tradisional - Komoditas Bawang Putih"
-    image = Image.open('.\output1\output-tradisional-Bawang Putih.jpg')
+    image = Image.open('output-tradisional-Bawang Putih.jpg')
     st.image(image)
     
     "> ###### Pasar Tradisional - Komoditas Cabai Merah"
-    image = Image.open('.\output1\output-tradisional-Cabai Merah.jpg')
+    image = Image.open('output-tradisional-Cabai Merah.jpg')
     st.image(image)
     
     "> ###### Pasar Tradisional - Komoditas Cabai Rawit"
-    image = Image.open('.\output1\output-tradisional-Cabai Rawit.jpg')
+    image = Image.open('output-tradisional-Cabai Rawit.jpg')
     st.image(image)
     
     "> ###### Pasar Tradisional - Komoditas Minyak Goreng"
-    image = Image.open('.\output1\output-tradisional-Minyak Goreng.jpg')
+    image = Image.open('output-tradisional-Minyak Goreng.jpg')
     st.image(image)
     
     "> ###### Pasar Tradisional - Komoditas Gula Pasir"
-    image = Image.open('.\output1\output-tradisional-Gula Pasir.jpg')
+    image = Image.open('output-tradisional-Gula Pasir.jpg')
     st.image(image)
 
 
