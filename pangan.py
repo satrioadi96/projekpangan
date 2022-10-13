@@ -99,36 +99,7 @@ Berikut grafik untuk pergerakan harga setiap komoditas pangan (periode bulanan) 
     '''
     "#### Grafik Harga Bahan Pangan Nasional dari tahun 2020-2022"
     
-    komoditas = ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
-       'Bawang Merah', 'Bawang Putih', 'Cabai Merah', 'Cabai Rawit',
-       'Minyak Goreng', 'Gula Pasir')
-    
-    col1, col2 = st.columns(2)
-
-    with col1:
-        market = st.selectbox(
-        "Jenis Pasar",
-        ("Tradisional", "Modern")
-    )
-
-    with col2:
-        comodity = st.selectbox(
-        "Komoditas Pangan",
-        komoditas
-    )
-    
-    if market == 'Tradisional':
-        table1 = 'harga-pasar-modern-daerah.xls'
-        for pang in komoditas:
-            if pang :
-                graphic_line_cmdty(table1, 'tradisional', pang)
-    elif market == 'Modern':
-        table2 = 'harga-pasar-tradisional-modern.xls'
-        for ngan in komoditas:
-            if ngan :
-                graphic_line_cmdty(table2, 'modern', ngan)
-    
-    st.line_chart(pd.read_excel('.\daerah\harga-pasar-tradisional-modern.xls')['Harga'])
+    st.line_chart(pd.read_excel('harga-pasar-modern-daerah.csv'))
 
     
 elif option == 'Analisa dan Model':

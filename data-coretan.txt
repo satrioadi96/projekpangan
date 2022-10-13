@@ -99,3 +99,54 @@ INDONESIA	2021	10411801.22	52.26	54415294.22
     "> ###### Pasar Tradisional - Komoditas Gula Pasir"
     image = Image.open('.\output1\output-tradisional-Gula Pasir.jpg')
     st.image(image)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    komoditas = ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
+       'Bawang Merah', 'Bawang Putih', 'Cabai Merah', 'Cabai Rawit',
+       'Minyak Goreng', 'Gula Pasir')
+    
+    col1, col2 = st.columns(2)
+
+    with col1:
+        market = st.selectbox(
+        "Jenis Pasar",
+        ("Tradisional", "Modern")
+    )
+
+    with col2:
+        comodity = st.selectbox(
+        "Komoditas Pangan",
+        komoditas
+    )
+    
+    if market == 'Tradisional':
+        table1 = 'harga-pasar-modern-daerah.xls'
+        for pang in komoditas:
+            if pang :
+                graphic_line_cmdty(table1, 'tradisional', pang)
+    elif market == 'Modern':
+        table2 = 'harga-pasar-tradisional-modern.xls'
+        for ngan in komoditas:
+            if ngan :
+                graphic_line_cmdty(table2, 'modern', ngan)
