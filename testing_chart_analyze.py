@@ -25,3 +25,6 @@ chart = alt.Chart(df).mark_line().encode(
 ).properties(title="Hello World")
 st.altair_chart(chart, use_container_width=True)
 
+'''
+![sesuatu](https://www.freecodecamp.org/news/content/images/size/w2000/2021/11/mila-tovar-NTiW908Uc1A-unsplash.jpg)
+'''
