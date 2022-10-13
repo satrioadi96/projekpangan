@@ -118,12 +118,12 @@ Berikut grafik untuk pergerakan harga setiap komoditas pangan (periode bulanan) 
     )
     
     if market == 'Tradisional':
-        table1 = './daerah/harga-pasar-modern-daerah.xls'
+        table1 = 'harga-pasar-modern-daerah.xls'
         for pang in komoditas:
             if pang :
                 graphic_line_cmdty(table1, 'tradisional', pang)
     elif market == 'Modern':
-        table2 = './daerah/harga-pasar-tradisional-modern.xls'
+        table2 = 'harga-pasar-tradisional-modern.xls'
         for ngan in komoditas:
             if ngan :
                 graphic_line_cmdty(table2, 'modern', ngan)
