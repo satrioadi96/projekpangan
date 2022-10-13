@@ -1,5 +1,5 @@
 #from os.path import expanduser as ospath
-#import numpy as np
+import altair as alt
 import streamlit as st
 import pandas as pd
 from PIL import Image
@@ -14,7 +14,7 @@ def img_header():
     st.markdown("[Email](mailto:prawiro.96@gmail.com) | [Github](https://github.com/satrioadi96) | [Linkedin](https://www.linkedin.com/in/satrio-adi-prawiro-64617a162)")
     st.write('_________________')
     
-def graphic_line_cmdty(link, psr, cmdty):
+def graphic_line_cmdty(link,  cmdty):  #psr,
     #link = '.\daerah\harga-pasar-'+psr+'-daerah.xls'
     df_hpmkb = pd.read_excel(link)
     
@@ -99,7 +99,58 @@ Berikut grafik untuk pergerakan harga setiap komoditas pangan (periode bulanan) 
     '''
     "#### Grafik Harga Bahan Pangan Nasional dari tahun 2020-2022"
     
-    st.line_chart(pd.read_excel('harga-pasar-modern-daerah.csv'))
+    kom_tup = ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
+       'Bawang Merah', 'Bawang Putih', 'Cabai Merah', 'Cabai Rawit',
+       'Minyak Goreng', 'Gula Pasir')
+    
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.radio("Jenis Pasar",('Tradisional', 'Modern'))
+
+    with col2:
+        option = st.selectbox(
+        "Komoditas Pangan",kom_tup
+    )
+        
+        if col1 =='Tradisional':
+            tab1 = '.\daerah\harga-pasar-tradisional-daerah.xls'
+            for i in range(0,len(kom_tup)):
+                if col2 == kom_tup[i]:
+                    graphic_line_cmdty(tab1,col2)
+        if col1 =='Modern':
+            tab2 = '.\daerah\harga-pasar-modern-daerah.xls'
+            for i in range(0,len(kom_tup)):
+                if col2 == kom_tup[i]:
+                    graphic_line_cmdty(tab1,col2)
+    
+    
+
+    samp = pd.read_csv('harga-pasar-modern-daerah.csv')
+    st.line_chart(samp['Gula Pasir'])
+    
+    ple = pd.read_excel('.\daerah\harga-pasar-tradisional-daerah.xls')
+    st.write(ple)
+    
+    ##
+    line_chart = alt.Chart(samp).mark_line().encode(
+        y= 'Daging Sapi:Q',
+        ).properties(width=100, height=100)
+    
+    line2 = line_chart.encode(
+        alt.X(field='Periode:T', type='nominal', sort='ascending')
+    )
+    
+    ###
+    lc2 = alt.Chart(samp).mark_line().encode(
+        y= 'Daging Sapi:Q',
+        ).properties(width=100, height=100)
+    
+    lcc2 = line_chart.encode(
+        alt.X(field='Periode:T', type='nominal', sort='ascending')
+    )
+    
+    st.altair_chart(line2)
 
     
 elif option == 'Analisa dan Model':
