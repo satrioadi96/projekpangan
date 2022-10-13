@@ -1,0 +1,101 @@
+D:\DQLAB_TETRIS_BATCH3_DATA_ANALYST\CAPSTONE-PROJECT_stuff_project
+
+
+1. Kualitas produksi adalah Gabah Kering Giling (GKG)2. Data pokok tanaman pangan yang dikumpulkan oleh Badan Pusat Statistik adalah luas panen dan produktivitas (hasil per hektar). Produksi merupakan hasil perkalian antara luas panen dan produktivitas.3. Data luas panen padi mulai tahun 2018 dihitung dengan metode Kerangka Sampel Area (KSA), menggantikan metode pengumpulan data luas panen padi yang sebelumnya yaitu metode eye estimate yang dikumpulkan melalui pelaporan data Statistik Pertanian (SP) oleh Kepala Cabang Dinas (KCD) Kecamatan.4. Angka produktivitas padi diperoleh melalui survei ubinan pada plot berukuran 2,5 m x 2,5 m dalam bentuk produksi Gabah Kering Panen (GKP) yang dikonversikan menjadi Gabah Kering Giling (GKG) berdasarkan angka konversi GKP ke GKG hasil Survei Konversi Gabah ke Beras tahun 2018. 
+Source Url: https://www.bps.go.id/indicator/53/1498/2/luas-panen-produksi-dan-produktivitas-padi-menurut-provinsi.html
+Access Time: October 7, 2022, 6:32 am
+
+
+https://hargapangan.id/tabel-harga/pasar-tradisional/daerah
+https://hargapangan.id/tabel-harga/pasar-modern/daerah
+
+setiap provinsi/komoditas untuk setiap 
+INDONESIA	2021	10411801.22	52.26	54415294.22
+
+
+1. Upload Capstone Project on Linkedin and Tag DQLab so we can repost
+2. Don't forget to click submit!
+
+
+
+    "> ###### Pasar Modern - Komoditas Beras"
+    image = Image.open('.\output1\output-modern-Beras.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Modern - Komoditas Daging Ayam"
+    image = Image.open('.\output1\output-modern-Daging Ayam.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Modern - Komoditas Daging Sapi"
+    image = Image.open('.\output1\output-modern-Daging Sapi.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Modern - Komoditas Telur Ayam"
+    image = Image.open('.\output1\output-modern-Telur Ayam.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Modern - Komoditas Bawang Merah"
+    image = Image.open('.\output1\output-modern-Bawang Merah.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Modern - Komoditas Bawang Putih"
+    image = Image.open('.\output1\output-modern-Bawang Putih.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Modern - Komoditas Cabai Merah"
+    image = Image.open('.\output1\output-modern-Cabai Merah.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Modern - Komoditas Cabai Rawit"
+    image = Image.open('.\output1\output-modern-Cabai Rawit.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Modern - Komoditas Minyak Goreng"
+    image = Image.open('.\output1\output-modern-Minyak Goreng.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Modern - Komoditas Gula Pasir"
+    image = Image.open('.\output1\output-modern-Gula Pasir.jpg')
+    st.image(image)
+    
+    st.write('__________________________')
+    
+    "> ###### Pasar Tradisional - Komoditas Beras"
+    image = Image.open('.\output1\output-tradisional-Beras.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Tradisional - Komoditas Daging Ayam"
+    image = Image.open('.\output1\output-tradisional-Daging Ayam.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Tradisional - Komoditas Daging Sapi"
+    image = Image.open('.\output1\output-tradisional-Daging Sapi.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Tradisional - Komoditas Telur Ayam"
+    image = Image.open('.\output1\output-tradisional-Telur Ayam.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Tradisional - Komoditas Bawang Merah"
+    image = Image.open('.\output1\output-tradisional-Bawang Merah.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Tradisional - Komoditas Bawang Putih"
+    image = Image.open('.\output1\output-tradisional-Bawang Putih.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Tradisional - Komoditas Cabai Merah"
+    image = Image.open('.\output1\output-tradisional-Cabai Merah.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Tradisional - Komoditas Cabai Rawit"
+    image = Image.open('.\output1\output-tradisional-Cabai Rawit.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Tradisional - Komoditas Minyak Goreng"
+    image = Image.open('.\output1\output-tradisional-Minyak Goreng.jpg')
+    st.image(image)
+    
+    "> ###### Pasar Tradisional - Komoditas Gula Pasir"
+    image = Image.open('.\output1\output-tradisional-Gula Pasir.jpg')
+    st.image(image)

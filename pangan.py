@@ -1,9 +1,9 @@
 #from os.path import expanduser as ospath
-import numpy as np
+#import numpy as np
 import streamlit as st
 import pandas as pd
 from PIL import Image
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 st.set_page_config(layout="wide")
 
@@ -14,7 +14,21 @@ def img_header():
     st.markdown("[Email](mailto:prawiro.96@gmail.com) | [Github](https://github.com/satrioadi96) | [Linkedin](https://www.linkedin.com/in/satrio-adi-prawiro-64617a162)")
     st.write('_________________')
     
-
+def graphic_line_cmdty(link, psr, cmdty):
+    #link = '.\daerah\harga-pasar-'+psr+'-daerah.xls'
+    df_hpmkb = pd.read_excel(link)
+    
+    prov = df_hpmkb[df_hpmkb['Komoditas(Rp)'] == cmdty]['Harga']
+    period = df_hpmkb[df_hpmkb['Komoditas(Rp)'] == cmdty]['Periode']
+    
+    plt.figure(figsize=(40, 10))
+    plt.plot(period,prov, color='grey', linewidth = 3, marker='o', markerfacecolor='grey', markersize=9)
+    plt.grid(color='darkgray', linestyle=':', linewidth=0.5)
+    plt.xlabel('Periode (Bulan)')
+    plt.ylabel('Harga (Rp)')
+    plt.savefig('.\output1\output-'+psr+'-'+cmdty+'.jpg', dpi=300)
+    
+#________________________________
 
 st.sidebar.markdown("# Menelusuri Kondisi Pangan di Indonesia")
 
@@ -83,88 +97,35 @@ Karena data ini diperoleh dari sumber yang telah ada (internet) dan bukan survei
 Berikut grafik untuk pergerakan harga setiap komoditas pangan (periode bulanan) di seluruh Indonesia
     '''
     "#### Grafik Harga Bahan Pangan Nasional dari tahun 2020-2022"
-    "> ###### Pasar Modern - Komoditas Beras"
-    image = Image.open('output-modern-Beras.jpg')
-    st.image(image)
     
-    "> ###### Pasar Modern - Komoditas Daging Ayam"
-    image = Image.open('output-modern-Daging Ayam.jpg')
-    st.image(image)
+    komoditas = ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
+       'Bawang Merah', 'Bawang Putih', 'Cabai Merah', 'Cabai Rawit',
+       'Minyak Goreng', 'Gula Pasir')
     
-    "> ###### Pasar Modern - Komoditas Daging Sapi"
-    image = Image.open('output-modern-Daging Sapi.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Modern - Komoditas Telur Ayam"
-    image = Image.open('output-modern-Telur Ayam.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Modern - Komoditas Bawang Merah"
-    image = Image.open('output-modern-Bawang Merah.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Modern - Komoditas Bawang Putih"
-    image = Image.open('output-modern-Bawang Putih.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Modern - Komoditas Cabai Merah"
-    image = Image.open('output-modern-Cabai Merah.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Modern - Komoditas Cabai Rawit"
-    image = Image.open('output-modern-Cabai Rawit.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Modern - Komoditas Minyak Goreng"
-    image = Image.open('output-modern-Minyak Goreng.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Modern - Komoditas Gula Pasir"
-    image = Image.open('output-modern-Gula Pasir.jpg')
-    st.image(image)
-    
-    st.write('__________________________')
-    
-    "> ###### Pasar Tradisional - Komoditas Beras"
-    image = Image.open('output-tradisional-Beras.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Tradisional - Komoditas Daging Ayam"
-    image = Image.open('output-tradisional-Daging Ayam.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Tradisional - Komoditas Daging Sapi"
-    image = Image.open('output-tradisional-Daging Sapi.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Tradisional - Komoditas Telur Ayam"
-    image = Image.open('output-tradisional-Telur Ayam.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Tradisional - Komoditas Bawang Merah"
-    image = Image.open('output-tradisional-Bawang Merah.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Tradisional - Komoditas Bawang Putih"
-    image = Image.open('output-tradisional-Bawang Putih.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Tradisional - Komoditas Cabai Merah"
-    image = Image.open('output-tradisional-Cabai Merah.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Tradisional - Komoditas Cabai Rawit"
-    image = Image.open('output-tradisional-Cabai Rawit.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Tradisional - Komoditas Minyak Goreng"
-    image = Image.open('output-tradisional-Minyak Goreng.jpg')
-    st.image(image)
-    
-    "> ###### Pasar Tradisional - Komoditas Gula Pasir"
-    image = Image.open('output-tradisional-Gula Pasir.jpg')
-    st.image(image)
+    col1, col2 = st.columns(2)
 
+    with col1:
+        market = st.selectbox(
+        "Jenis Pasar",
+        ("Tradisional", "Modern")
+    )
+
+    with col2:
+        comodity = st.selectbox(
+        "Komoditas Pangan",
+        komoditas
+    )
+    
+    if market == 'Tradisional':
+        table1 = '.\daerah\harga-pasar-tradisional-daerah.xls'
+        for pang in komoditas:
+            if pang :
+                graphic_line_cmdty(table1, 'tradisional', pang)
+    elif market == 'Modern':
+        table2 = '.\daerah\harga-pasar-tradisional-modern.xls'
+        for ngan in komoditas:
+            if ngan :
+                graphic_line_cmdty(table2, 'modern', ngan)
 
     
 elif option == 'Analisa dan Model':
