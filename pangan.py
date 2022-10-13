@@ -26,7 +26,11 @@ def graphic_line_cmdty(link, psr, cmdty):
     plt.grid(color='darkgray', linestyle=':', linewidth=0.5)
     plt.xlabel('Periode (Bulan)')
     plt.ylabel('Harga (Rp)')
-    plt.savefig('.\output1\output-'+psr+'-'+cmdty+'.jpg', dpi=300)
+    #plt.savefig('.\output1\output-'+psr+'-'+cmdty+'.jpg', dpi=300)
+    plt.show()
+    
+    #image = Image.open('.\output1\output-modern-Telur Ayam.jpg')
+    #st.image(image)
     
 #________________________________
 
@@ -117,15 +121,17 @@ Berikut grafik untuk pergerakan harga setiap komoditas pangan (periode bulanan) 
     )
     
     if market == 'Tradisional':
-        table1 = '.\projekpangan\daerah\harga-pasar-modern-daerah.xls'
+        table1 = '.\daerah\harga-pasar-modern-daerah.xls'
         for pang in komoditas:
             if pang :
                 graphic_line_cmdty(table1, 'tradisional', pang)
     elif market == 'Modern':
-        table2 = '.\projekpangan\daerah\harga-pasar-tradisional-modern.xls'
+        table2 = '.\daerah\harga-pasar-tradisional-modern.xls'
         for ngan in komoditas:
             if ngan :
                 graphic_line_cmdty(table2, 'modern', ngan)
+    
+    st.line_chart(pd.read_excel('.\daerah\harga-pasar-tradisional-modern.xls')['Harga'])
 
     
 elif option == 'Analisa dan Model':
