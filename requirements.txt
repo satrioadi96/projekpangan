@@ -12,3 +12,4 @@ regex
 scikit-learn
 scipy
 seaborn
+xlrd
