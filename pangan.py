@@ -29,9 +29,6 @@ def graphic_line_cmdty(link, psr, cmdty):
     #plt.savefig('.\output1\output-'+psr+'-'+cmdty+'.jpg', dpi=300)
     plt.show()
     
-    #image = Image.open('.\output1\output-modern-Telur Ayam.jpg')
-    #st.image(image)
-    
 #________________________________
 
 st.sidebar.markdown("# Menelusuri Kondisi Pangan di Indonesia")
@@ -62,43 +59,43 @@ elif option == 'Data dan Visualisasi':
     '''
     ## Data dan Visualisasi
 
-	### Deskripsi Data
-	Data yang akan digunakan adalah data dengan 10 jenis pangan pokok di Indonesia, antara lain:
+### Deskripsi Data
+Data yang akan digunakan adalah data dengan 10 jenis pangan pokok di Indonesia, antara lain:
 
-	- beras
-	- daging ayam 
-	- daging sapi
-	- telur ayam
-	- bawang merah 
-	- bawang putih
-	- cabai merah 
-	- cabai rawit
-	- minyak goreng
-	- gula pasir
+- beras
+- daging ayam 
+- daging sapi
+- telur ayam
+- bawang merah 
+- bawang putih
+- cabai merah 
+- cabai rawit
+- minyak goreng
+- gula pasir
 
-	data ini terbagi dalam periode waktu bulanan yang akan ditampilkan dalam aplikasi web streamlit dengan Grafik Data. 
+data ini terbagi dalam periode waktu bulanan yang akan ditampilkan dalam aplikasi web streamlit dengan Grafik Data. 
 
-	### Grafik Data
-	Data akan ditampilkan beserta deskripsinya dalam grafik berikut.
-	> a.  grafik/diagram garis (*line*) mengenai:
-	> - pergerakan harga setiap komoditas pangan (periode bulanan)
-	> - pergerakan harga setiap provinsi (pokok setiap provinsi)
-	
-	> b. grafik *scatterplot/bubble* untuk korelasi :
-	> - produksi dalam negeri dengan harga
-	
-	> c. grafik model mesin pembelajaran (*Machine learning*) untuk (data aktual dan prediksi):
-	> - produksi dalam negeri dengan harga
-	
-	### Sumber dan Metode Data
-	Sumbernya meliputi berbagai website dari [BPS](https://www.bps.go.id/), [PIHPS](https://hargapangan.id), Kementan dll.
-	
-	Karena data ini diperoleh dari sumber yang telah ada (internet) dan bukan survei, maka metode yang digunakan adalah metode sekunder untuk pengumpulan data.
-	
-	
-	### Visualisasi Data
-	
-	Berikut grafik untuk pergerakan harga setiap komoditas pangan (periode bulanan) di seluruh Indonesia
+### Grafik Data
+Data akan ditampilkan beserta deskripsinya dalam grafik berikut.
+> a.  grafik/diagram garis (*line*) mengenai:
+> - pergerakan harga setiap komoditas pangan (periode bulanan)
+> - pergerakan harga setiap provinsi (pokok setiap provinsi)
+
+> b. grafik *scatterplot/bubble* untuk korelasi :
+> - produksi dalam negeri dengan harga
+
+> c. grafik model mesin pembelajaran (*Machine learning*) untuk (data aktual dan prediksi):
+> - produksi dalam negeri dengan harga
+
+### Sumber dan Metode Data
+Sumbernya meliputi berbagai website dari [BPS](https://www.bps.go.id/), [PIHPS](https://hargapangan.id), Kementan dll.
+
+Karena data ini diperoleh dari sumber yang telah ada (internet) dan bukan survei, maka metode yang digunakan adalah metode sekunder untuk pengumpulan data.
+
+
+### Visualisasi Data
+
+Berikut grafik untuk pergerakan harga setiap komoditas pangan (periode bulanan) di seluruh Indonesia
     '''
     "#### Grafik Harga Bahan Pangan Nasional dari tahun 2020-2022"
     
@@ -121,18 +118,17 @@ elif option == 'Data dan Visualisasi':
     )
     
     if market == 'Tradisional':
-        table1 = '.\daerah\harga-pasar-modern-daerah.xls'
+        table1 = r'.\daerah\harga-pasar-modern-daerah.xls'
         for pang in komoditas:
             if pang :
                 graphic_line_cmdty(table1, 'tradisional', pang)
     elif market == 'Modern':
-        table2 = '.\daerah\harga-pasar-tradisional-modern.xls'
+        table2 = r'.\daerah\harga-pasar-tradisional-modern.xls'
         for ngan in komoditas:
             if ngan :
                 graphic_line_cmdty(table2, 'modern', ngan)
     
-    dff = pd.read_excel(r'.\daerah\harga-pasar-tradisional-modern.xls')
-    st.line_chart(dff['Harga'])
+    st.line_chart(pd.read_excel('.\daerah\harga-pasar-tradisional-modern.xls')['Harga'])
 
     
 elif option == 'Analisa dan Model':
