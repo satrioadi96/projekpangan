@@ -1,17 +1,17 @@
 #from os.path import expanduser as ospath
-import numpy as np
+#import numpy as np
 import streamlit as st
 import pandas as pd
 from PIL import Image
-#import matplotlib.pyplot as plt
+import altair as alt
 
 st.set_page_config(layout="wide")
 
 def img_header():
     image = Image.open('img-title.jpg')
     st.image(image)
-    st.markdown("Penyusun oleh **Satrio Adi Prawiro**")
-    st.markdown("[Email](mailto:prawiro.96@gmail.com) | [Github](https://github.com/satrioadi96) | [Linkedin](https://www.linkedin.com/in/satrio-adi-prawiro-64617a162)")
+    '''Penyusun oleh **Satrio Adi Prawiro**'''
+    '''[Email](mailto:prawiro.96@gmail.com) | [Github](https://github.com/satrioadi96) | [Linkedin](https://www.linkedin.com/in/satrio-adi-prawiro-64617a162)'''
     st.write('_________________')
 
 
@@ -20,30 +20,72 @@ st.sidebar.markdown("# Menelusuri Kondisi Pangan di Indonesia")
 option = st.sidebar.selectbox('Daftar Bab/Section:',
                               ('Pendahuluan dan Data', 'Kesimpulan dan Daftar Pustaka'))
 
+st.sidebar.markdown('''
+                    Target:
+    - deskripsi harga pangan setiap periode bulanan
+    - daerah mana yang paling banyak produksi bahan pangan utama
+    - menelaah pengaruh produksi terhadap harga maupun ekspor-impornya
+    - model yang optimal untuk memperkuat pengaruhnya. 
+                    ''')
+
 if option == 'Pendahuluan dan Data' or option == '':
     img_header()
     '''
-    ## PENDAHULUAN
-    ### Latar belakang
-    Beberapa tahun terakhir ini, 
-    [ pandemi yang bernama COVID-19 disebabkan oleh Virus SARS-CoV-2](https://www.cnbcindonesia.com/lifestyle/20220930102306-33-376204/taiwan-sebut-asal-usul-virus-covid-19-bukan-dari-pasar-wuhan)  yang muncul akhir tahun 2019 dari Wuhan, China dan menghancurkan bahan-bahan pangan didunia, termasuk distribusinya.
-    Semain parah dengan [peristiwa perang dan koflik yang besar, antara Ukraina dan Rusia](https://www.cnbcindonesia.com/news/20220228064546-4-318875/ini-awal-mula-perang-rusia-ukraina-akankah-segera-berakhir/1) sebagai dua negara produsen dan pengekspor gandum terbesar di dunia yang dimulai sejak 24 Februari 2022. Akibatnya seluruh dunia, khususnya Indonesia [bergantung pada impor bahan pangan](https://news.detik.com/kolom/d-6168790/perang-krisis-pangan-dan-diplomasi-jokowi) sehingga mengerek harga secara drastis, yang akan merongrong daya beli masyarakat.
-
-    Oleh karena itu, Penyusun melakukan penelusuran mengenai kondisi bahan pangan utama dalam negeri, mengenai harga pangan, daerah mana yang paling banyak produksi bahan pangan utama, menelaah pengaruhnya terhadap harga maupun ekspor-impornya, serta model yang optimal untuk memperkuat pengaruhnya. 
-    Dengan ini diharapkan bisa menemukan solusi yang tepat untuk direkomendasikan secara publik dan khususnya untuk instansi pemerintah yang terkait. 
+    > *Masyarakat di dunia, khususnya di Indonesia sejak lama memenuhi kebutuhan mereka dalam hal bahan pakaian (sandang), tempat tinggal/rumah (papan) dan makanan (pangan). Pangan merupakan kebutuhan bertahan hidup dengan mengonsumsi bahan yang layak dimakan dari alam. Sepanjang perjalanan sejarahnya, kebutuhan masyarakat ini pernah mengalami kejayaan dan kemakmuran hingga terpenuhi baik dalam dan luar negeri. Disisi lain, kekurangan pangan sering terjadi akibat bencana, baik dari alam (banjir, gempa, longsor) maupun manusia (perang dan konflik), sehingga tak pelak menimbulkan korban yang berjatuhan karena kelaparan, kekurangan gizi, dan penyakit lainnya hingga kematian.*
     '''
+    st.image(Image.open('lag_banget.png'))
+    
+    
+    dfm = pd.read_excel(".\daerah\harga-pasar-modern-daerah.xls")
+    dft = pd.read_excel(".\daerah\harga-pasar-tradisional-daerah.xls")
+    
+    dcm = dfm.copy()
+    dct = dft.copy()
+    
+    indek = dcm.drop(['No.', '11/2022'], axis=1)
+    indek2 = dct.drop(['No.', '11/2022'], axis=1)
+    
+    melet = indek.melt('Komoditas(Rp)', var_name='Periode(Bln)', value_name='Harga(Rp)')
+    telem = indek2.melt('Komoditas(Rp)', var_name='Periode(Bln)', value_name='Harga(Rp)')
+    
+    '''____________________
+#### Grafik Komoditas (Pasar Modern)'''
+    
+    cmdty1 = st.selectbox(
+        'Jenis Pangan',
+        ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
+         'Bawang Merah', 'Bawang Putih', 'Cabai Merah', 'Cabai Rawit',
+         'Minyak Goreng', 'Gula Pasir'))
+    
+    melet2 = melet[melet['Komoditas(Rp)']== cmdty1]
+    melet2['Periode(Bln)']= pd.to_datetime(melet2['Periode(Bln)'])
+    
+    chart = alt.Chart(melet2).mark_line().encode(
+    x=alt.X('Periode(Bln)'),
+    y=alt.Y('Harga(Rp)'),
+    color=alt.Color("Komoditas(Rp)")
+    ).properties(title="Grafik Harga Pangan 2020 - 2022")
+    st.altair_chart(chart, use_container_width=True)
+    
+    '''#### Grafik Komoditas (Pasar Tradisional)'''
+    
+    cmdty2 = st.selectbox(
+        'Jenis Pangan ',
+        ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
+         'Bawang Merah', 'Bawang Putih', 'Cabai Merah', 'Cabai Rawit',
+         'Minyak Goreng', 'Gula Pasir'))
+    
+    telem2 = telem[telem['Komoditas(Rp)']== cmdty2]
+    telem2['Periode(Bln)']= pd.to_datetime(telem2['Periode(Bln)'])
+    
+    chart = alt.Chart(telem2).mark_line().encode(
+    x=alt.X('Periode(Bln)'),
+    y=alt.Y('Harga(Rp)'),
+    color=alt.Color("Komoditas(Rp)")
+    ).properties(title="Grafik Harga Pangan 2020 - 2022")
+    st.altair_chart(chart, use_container_width=True)
     
     '''
-    ## Data dan Visualisasi
-    ### Sumber dan Metode Data
-    Sumbernya meliputi berbagai website dari [BPS](https://www.bps.go.id/), [PIHPS](https://hargapangan.id), Kementan dll.
-    Karena data ini diperoleh dari sumber yang telah ada (internet) dan bukan survei, maka metode yang digunakan adalah metode sekunder untuk pengumpulan data.
-
-
-    ### Visualisasi Data
-    Berikut grafik untuk pergerakan harga setiap komoditas pangan (periode bulanan) di seluruh Indonesia
-
-    #### Grafik Harga Bahan Pangan Nasional dari tahun 2020-2022
     
     ## Analisa dan Model
     Untuk Analisa ini Akan disusun dengan Model Yang Optimal dan akan diupdate nanti.

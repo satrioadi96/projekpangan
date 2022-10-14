@@ -1,0 +1,41 @@
+D:\DQLAB_TETRIS_BATCH3_DATA_ANALYST\CAPSTONE-PROJECT_stuff_project
+
+
+1. Kualitas produksi adalah Gabah Kering Giling (GKG)2. Data pokok tanaman pangan yang dikumpulkan oleh Badan Pusat Statistik adalah luas panen dan produktivitas (hasil per hektar). Produksi merupakan hasil perkalian antara luas panen dan produktivitas.3. Data luas panen padi mulai tahun 2018 dihitung dengan metode Kerangka Sampel Area (KSA), menggantikan metode pengumpulan data luas panen padi yang sebelumnya yaitu metode eye estimate yang dikumpulkan melalui pelaporan data Statistik Pertanian (SP) oleh Kepala Cabang Dinas (KCD) Kecamatan.4. Angka produktivitas padi diperoleh melalui survei ubinan pada plot berukuran 2,5 m x 2,5 m dalam bentuk produksi Gabah Kering Panen (GKP) yang dikonversikan menjadi Gabah Kering Giling (GKG) berdasarkan angka konversi GKP ke GKG hasil Survei Konversi Gabah ke Beras tahun 2018. 
+Source Url: https://www.bps.go.id/indicator/53/1498/2/luas-panen-produksi-dan-produktivitas-padi-menurut-provinsi.html
+Access Time: October 7, 2022, 6:32 am
+
+
+https://hargapangan.id/tabel-harga/pasar-tradisional/daerah
+https://hargapangan.id/tabel-harga/pasar-modern/daerah
+
+setiap provinsi/komoditas untuk setiap 
+INDONESIA	2021	10411801.22	52.26	54415294.22
+
+
+1. Upload Capstone Project on Linkedin and Tag DQLab so we can repost
+2. Don't forget to click submit!
+
+
+
+    ## PENDAHULUAN
+    ### Latar belakang
+
+    
+    '''
+    ## Data dan Visualisasi
+    ### Sumber dan Metode Data
+    Sumbernya meliputi berbagai website dari [BPS](https://www.bps.go.id/), [PIHPS](https://hargapangan.id), Kementan dll.
+    Karena data ini diperoleh dari sumber yang telah ada (internet) dan bukan survei, maka metode yang digunakan adalah metode sekunder untuk pengumpulan data.
+
+
+    ### Visualisasi Data
+    Berikut grafik untuk pergerakan harga setiap komoditas pangan (periode bulanan) di seluruh Indonesia
+    
+    '''
+
+    #### Grafik Harga Bahan Pangan Nasional dari tahun 2020-2022
+
+https://www.freecodecamp.org/news/content/images/size/w2000/2021/11/mila-tovar-NTiW908Uc1A-unsplash.jpg
+
+Dengan ini diharapkan bisa menemukan solusi yang tepat untuk direkomendasikan secara publik dan khususnya untuk instansi pemerintah yang terkait. 
