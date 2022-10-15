@@ -5,7 +5,7 @@ import pandas as pd
 from PIL import Image
 import altair as alt
 
-st.set_page_config(layout="wide")
+#st.set_page_config(layout="wide")
 
 def img_header():
     image = Image.open('img-title.jpg')
@@ -35,6 +35,11 @@ if option == 'Pendahuluan dan Data' or option == '':
     '''
     st.image(Image.open('lag_banget.png'))
     
+    '''
+    Ringkasan data yang dikelompokkan dalam 10 jenis pangan berikut.
+    '''
+    st.image(Image.open('sepuluh pangan.png'))
+    '''Dengan sumber data sekunder, ini akan dibagi dalam periode bulanan. Dengan jabaran: Harga, Produksi, dan Ekspor-Impor'''
     
     dfm = pd.read_excel(".\daerah\harga-pasar-modern-daerah.xls")
     dft = pd.read_excel(".\daerah\harga-pasar-tradisional-daerah.xls")
@@ -49,47 +54,93 @@ if option == 'Pendahuluan dan Data' or option == '':
     telem = indek2.melt('Komoditas(Rp)', var_name='Periode(Bln)', value_name='Harga(Rp)')
     
     '''____________________
-#### Grafik Komoditas (Pasar Modern)'''
+#### Grafik Harga Jenis Pangan Tingkat Nasional (Pasar Modern)'''
+    jen_pan = ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
+         'Bawang Merah', 'Bawang Putih', 'Cabai Merah', 'Cabai Rawit',
+         'Minyak Goreng', 'Gula Pasir')
     
     cmdty1 = st.selectbox(
         'Jenis Pangan',
-        ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
-         'Bawang Merah', 'Bawang Putih', 'Cabai Merah', 'Cabai Rawit',
-         'Minyak Goreng', 'Gula Pasir'))
+        jen_pan)
     
     melet2 = melet[melet['Komoditas(Rp)']== cmdty1]
     melet2['Periode(Bln)']= pd.to_datetime(melet2['Periode(Bln)'])
     
-    chart = alt.Chart(melet2).mark_line().encode(
+    chart = alt.Chart(melet2).mark_line(
+        point=alt.OverlayMarkDef(color="blue")
+        ).encode(
     x=alt.X('Periode(Bln)'),
     y=alt.Y('Harga(Rp)'),
     color=alt.Color("Komoditas(Rp)")
-    ).properties(title="Grafik Harga Pangan 2020 - 2022")
+    )
     st.altair_chart(chart, use_container_width=True)
     
-    '''#### Grafik Komoditas (Pasar Tradisional)'''
+    #
+    momax = melet2[melet2['Komoditas(Rp)'] == cmdty1]['Harga(Rp)'].max()
+    momin = melet2[melet2['Komoditas(Rp)'] == cmdty1]['Harga(Rp)'].min()
+    moavg = melet2[melet2['Komoditas(Rp)'] == cmdty1]['Harga(Rp)'].mean()
+    
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Harga Tertinggi", 'Rp'+str(momax)+',00')
+    col2.metric("Harga Terendah", 'Rp'+str(momin)+',00')
+    col3.metric("Harga Rata-rata", 'Rp'+str(round(moavg,2)))
+    
+    '''#### Grafik Harga Jenis Pangan Tingkat Nasional (Pasar Tradisional)'''
     
     cmdty2 = st.selectbox(
         'Jenis Pangan ',
-        ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
-         'Bawang Merah', 'Bawang Putih', 'Cabai Merah', 'Cabai Rawit',
-         'Minyak Goreng', 'Gula Pasir'))
+        jen_pan)
     
     telem2 = telem[telem['Komoditas(Rp)']== cmdty2]
     telem2['Periode(Bln)']= pd.to_datetime(telem2['Periode(Bln)'])
     
-    chart = alt.Chart(telem2).mark_line().encode(
+    chart = alt.Chart(telem2).mark_line(
+        point=alt.OverlayMarkDef(color="blue")
+        ).encode(
     x=alt.X('Periode(Bln)'),
     y=alt.Y('Harga(Rp)'),
     color=alt.Color("Komoditas(Rp)")
-    ).properties(title="Grafik Harga Pangan 2020 - 2022")
+    )
+    
     st.altair_chart(chart, use_container_width=True)
+    
+    #
+    tramax = telem2[telem2['Komoditas(Rp)'] == cmdty1]['Harga(Rp)'].max()
+    tramin = telem2[telem2['Komoditas(Rp)'] == cmdty1]['Harga(Rp)'].min()
+    traavg = telem2[telem2['Komoditas(Rp)'] == cmdty1]['Harga(Rp)'].mean()
+    
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Harga Tertinggi", 'Rp'+str(momax)+',00')
+    col2.metric("Harga Terendah", 'Rp'+str(momin)+',00')
+    col3.metric("Harga Rata-rata", 'Rp'+str(round(moavg,2)))
+
+    
+    '''#### Grafik Harga Jenis Pangan Tingkat Provinsi (Pasar Modern)'''
+    
+    lp3 = pd.read_excel('.\produksi\LPP_P_Padi.xlsx')
+    lp3
+    
+    '''#### Grafik Harga Jenis Pangan Tingkat Provinsi (Pasar Tradisional)'''
+    
     
     '''
     
     ## Analisa dan Model
     Untuk Analisa ini Akan disusun dengan Model Yang Optimal dan akan diupdate nanti.
     '''
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 elif option == 'Kesimpulan dan Daftar Pustaka':
     '''

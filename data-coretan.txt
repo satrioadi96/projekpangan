@@ -39,3 +39,16 @@ INDONESIA	2021	10411801.22	52.26	54415294.22
 https://www.freecodecamp.org/news/content/images/size/w2000/2021/11/mila-tovar-NTiW908Uc1A-unsplash.jpg
 
 Dengan ini diharapkan bisa menemukan solusi yang tepat untuk direkomendasikan secara publik dan khususnya untuk instansi pemerintah yang terkait. 
+
+
+properties(title="Grafik Harga Pangan 2020 - 2022")
+properties(title="Grafik Harga Pangan 2020 - 2022")
+
+
+
+
+xrule = (
+    alt.Chart()
+    .mark_rule(color="cyan", strokeWidth=2)
+    .encode(x=alt.datum(alt.DateTime(year=2006, month="November")))
+)
