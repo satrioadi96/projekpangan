@@ -139,6 +139,8 @@ if option == 'Pendahuluan dan Data' or option == '':
     
     '''#### Grafik Harga Jenis Pangan Tingkat Provinsi (Pasar Tradisional)'''
     
+    '''#### Grafik Produksi Jenis Pangan Nasional'''
+    
     
     '''
     
