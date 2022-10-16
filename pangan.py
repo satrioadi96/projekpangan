@@ -58,8 +58,8 @@ if option == 'Pendahuluan dan Data' or option == '':
     st.image(Image.open('sepuluh pangan.png'))
     '''Dengan sumber data sekunder, ini akan dibagi dalam periode bulanan. Dengan jabaran: Harga, Produksi, dan Ekspor-Impor'''
     
-    dfm = pd.read_excel(r".\daerah\harga-pasar-modern-daerah.xls")
-    dft = pd.read_excel(r".\daerah\harga-pasar-tradisional-daerah.xls")
+    dfm = pd.read_excel("daerah/harga-pasar-modern-daerah.xls")
+    dft = pd.read_excel("daerah/harga-pasar-tradisional-daerah.xls")
     
     dcm = dfm.copy()
     dct = dft.copy()
