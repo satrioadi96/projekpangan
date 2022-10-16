@@ -108,7 +108,7 @@ if option == 'Pendahuluan dan Data' or option == '':
         jen_pan)
     
     telem2 = telem[telem['Komoditas(Rp)']== cmdty2]
-    #telem2['Periode(Bln)']= pd.to_datetime(telem2['Periode(Bln)'])
+    telem2['Periode(Bln)']= pd.to_datetime(telem2['Periode(Bln)'])
     
     chart = alt.Chart(telem2).mark_line(
         point=alt.OverlayMarkDef(color="blue")
@@ -126,9 +126,9 @@ if option == 'Pendahuluan dan Data' or option == '':
     traavg = telem2[telem2['Komoditas(Rp)'] == cmdty2]['Harga(Rp)'].mean()
     
     col1, col2, col3 = st.columns(3)
-    col1.metric("Harga Tertinggi", 'Rp'+str(momax)+',00')
-    col2.metric("Harga Terendah", 'Rp'+str(momin)+',00')
-    col3.metric("Harga Rata-rata", 'Rp'+str(round(moavg,2)))
+    col1.metric("Harga Tertinggi", 'Rp'+str(tramax)+',00')
+    col2.metric("Harga Terendah", 'Rp'+str(tramin)+',00')
+    col3.metric("Harga Rata-rata", 'Rp'+str(round(traavg,2)))
     
     '''__________________________'''
     
