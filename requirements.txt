@@ -1,14 +1,14 @@
 beautifulsoup4
+pandas
 bleach
 bokeh
 matplotlib
 matplotlib-inline
-numpy
-numpydoc
-pandas
 Pillow
 regex
 scikit-learn
 scipy
 seaborn
 openpyxl
+numpy
+numpydoc
