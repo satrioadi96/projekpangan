@@ -6,6 +6,9 @@ from PIL import Image
 import altair as alt
 
 #st.set_page_config(layout="wide")
+jen_pan = ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
+         'Bawang Merah', 'Bawang Putih', 'Cabai Merah', 'Cabai Rawit',
+         'Minyak Goreng', 'Gula Pasir')
 
 def img_header():
     image = Image.open('img-title.jpg')
@@ -13,6 +16,20 @@ def img_header():
     '''Penyusun oleh **Satrio Adi Prawiro**'''
     '''[Email](mailto:prawiro.96@gmail.com) | [Github](https://github.com/satrioadi96) | [Linkedin](https://www.linkedin.com/in/satrio-adi-prawiro-64617a162)'''
     st.write('_________________')
+
+def graph0(link):
+    link = link.replace('\t', ' ')
+    spot = pd.read_excel(link)
+    spot_ = spot.replace('-',0)
+    spot2 = spot_.drop(['No.', '11/2022'], axis=1)
+    spot3 = spot2.melt('Provinsi', var_name='Periode(Bln)', value_name='Harga(Rp)')
+    spot31 = spot3['Harga(Rp)'].astype(int)
+    return spot31
+
+    
+
+    
+    
 
 
 st.sidebar.markdown("# Menelusuri Kondisi Pangan di Indonesia")
@@ -55,9 +72,6 @@ if option == 'Pendahuluan dan Data' or option == '':
     
     '''____________________
 #### Grafik Harga Jenis Pangan Tingkat Nasional (Pasar Modern)'''
-    jen_pan = ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
-         'Bawang Merah', 'Bawang Putih', 'Cabai Merah', 'Cabai Rawit',
-         'Minyak Goreng', 'Gula Pasir')
     
     cmdty1 = st.selectbox(
         'Jenis Pangan',
@@ -73,6 +87,8 @@ if option == 'Pendahuluan dan Data' or option == '':
     y=alt.Y('Harga(Rp)'),
     color=alt.Color("Komoditas(Rp)")
     )
+
+    
     st.altair_chart(chart, use_container_width=True)
     
     #
@@ -105,20 +121,21 @@ if option == 'Pendahuluan dan Data' or option == '':
     st.altair_chart(chart, use_container_width=True)
     
     #
-    tramax = telem2[telem2['Komoditas(Rp)'] == cmdty1]['Harga(Rp)'].max()
-    tramin = telem2[telem2['Komoditas(Rp)'] == cmdty1]['Harga(Rp)'].min()
-    traavg = telem2[telem2['Komoditas(Rp)'] == cmdty1]['Harga(Rp)'].mean()
+    tramax = telem2[telem2['Komoditas(Rp)'] == cmdty2]['Harga(Rp)'].max()
+    tramin = telem2[telem2['Komoditas(Rp)'] == cmdty2]['Harga(Rp)'].min()
+    traavg = telem2[telem2['Komoditas(Rp)'] == cmdty2]['Harga(Rp)'].mean()
     
     col1, col2, col3 = st.columns(3)
     col1.metric("Harga Tertinggi", 'Rp'+str(momax)+',00')
     col2.metric("Harga Terendah", 'Rp'+str(momin)+',00')
     col3.metric("Harga Rata-rata", 'Rp'+str(round(moavg,2)))
-
+    
+    '''__________________________'''
     
     '''#### Grafik Harga Jenis Pangan Tingkat Provinsi (Pasar Modern)'''
     
-    lp3 = pd.read_excel('.\produksi\LPP_P_Padi.xlsx')
-    lp3
+
+
     
     '''#### Grafik Harga Jenis Pangan Tingkat Provinsi (Pasar Tradisional)'''
     

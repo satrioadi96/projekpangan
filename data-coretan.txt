@@ -1,3 +1,66 @@
+USING IN THE FUTURE
++++++++++++++++++++++++++++++++++++++++++++++++++
+
+.lower()
+
+xrule = (
+    alt.Chart()
+    .mark_rule(color="cyan", strokeWidth=2)
+    .encode(x=alt.datum(alt.DateTime(year=2006, month="November")))
+)
+
+callout = alt.Chart(data.iloc[7:8]).mark_point(
+    color='red', size=300, tooltip="Tooltip text here"
+).encode(
+    x='x',
+    y='y'
+)
+
+.replace(r'\t', ' ')
+
+
+
+    chart = alt.Chart(spot31).mark_line(
+        point=alt.OverlayMarkDef(color="red")
+        ).encode(
+    x=alt.X('Periode(Bln)'),
+    y=alt.Y('Harga(Rp)'),
+    color=alt.Color("Provinsi")
+    )
+    st.altair_chart(chart, use_container_width=True)
+
+m_bwmr='.\modern\harga-pasar-modern-komoditas-bawang-merah.xls'
+    m_bwpt='.\modern\harga-pasar-modern-komoditas-bawang-putih.xls'
+    m_bras='.\modern\harga-pasar-modern-komoditas-beras.xls'
+    m_cbmr='.\modern\harga-pasar-modern-komoditas-cabai-merah.xls'
+    m_bras='.\modern\harga-pasar-modern-komoditas-cabai-rawit.xls'
+    m_dgym='.\modern\harga-pasar-modern-komoditas-daging-ayam.xls'
+    m_dgsp='.\modern\harga-pasar-modern-komoditas-daging-sapi.xls'
+    m_glps='.\modern\harga-pasar-modern-komoditas-gula-pasir.xls'
+    m_mygr='.\modern\harga-pasar-modern-komoditas-minyak-goreng.xls'
+    m_tlym='.\modern\harga-pasar-modern-komoditas-telur-ayam.xls'
+    
+    m_bwmr='.\modern\harga-pasar-modern-komoditas-bawang-merah.xls'
+    m_bwpt='.\modern\harga-pasar-modern-komoditas-bawang-putih.xls'
+    m_bras='.\modern\harga-pasar-modern-komoditas-beras.xls'
+    m_cbmr='.\modern\harga-pasar-modern-komoditas-cabai-merah.xls'
+    m_bras='.\modern\harga-pasar-modern-komoditas-cabai-rawit.xls'
+    m_dgym='.\modern\harga-pasar-modern-komoditas-daging-ayam.xls'
+    m_dgsp='.\modern\harga-pasar-modern-komoditas-daging-sapi.xls'
+    m_glps='.\modern\harga-pasar-modern-komoditas-gula-pasir.xls'
+    m_mygr='.\modern\harga-pasar-modern-komoditas-minyak-goreng.xls'
+    m_tlym='.\modern\harga-pasar-modern-komoditas-telur-ayam.xls'
+    
+
+    #graph0(m_bras)
+    pero = pd.read_excel(m_bwmr)
+    pero
+    
+    graph0(m_bras)
+
+
+-------------------------------------------------
+
 D:\DQLAB_TETRIS_BATCH3_DATA_ANALYST\CAPSTONE-PROJECT_stuff_project
 
 
@@ -44,11 +107,3 @@ Dengan ini diharapkan bisa menemukan solusi yang tepat untuk direkomendasikan se
 properties(title="Grafik Harga Pangan 2020 - 2022")
 properties(title="Grafik Harga Pangan 2020 - 2022")
 
-
-
-
-xrule = (
-    alt.Chart()
-    .mark_rule(color="cyan", strokeWidth=2)
-    .encode(x=alt.datum(alt.DateTime(year=2006, month="November")))
-)
