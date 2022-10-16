@@ -12,3 +12,4 @@ seaborn
 openpyxl
 numpy
 numpydoc
+xlrd
