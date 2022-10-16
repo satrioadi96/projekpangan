@@ -108,7 +108,7 @@ if option == 'Pendahuluan dan Data' or option == '':
         jen_pan)
     
     telem2 = telem[telem['Komoditas(Rp)']== cmdty2]
-    telem2['Periode(Bln)']= pd.to_datetime(telem2['Periode(Bln)'])
+    #telem2['Periode(Bln)']= pd.to_datetime(telem2['Periode(Bln)'])
     
     chart = alt.Chart(telem2).mark_line(
         point=alt.OverlayMarkDef(color="blue")
