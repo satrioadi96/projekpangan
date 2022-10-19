@@ -17,20 +17,7 @@ def img_header():
     '''[Email](mailto:prawiro.96@gmail.com) | [Github](https://github.com/satrioadi96) | [Linkedin](https://www.linkedin.com/in/satrio-adi-prawiro-64617a162)'''
     st.write('_________________')
 
-def graph0(link):
-    link = link.replace('\t', ' ')
-    spot = pd.read_excel(link)
-    spot_ = spot.replace('-',0)
-    spot2 = spot_.drop(['No.', '11/2022'], axis=1)
-    spot3 = spot2.melt('Provinsi', var_name='Periode(Bln)', value_name='Harga(Rp)')
-    spot31 = spot3['Harga(Rp)'].astype(int)
-    return spot31
-
-    
-
-    
-    
-
+# ----------------------------------------
 
 st.sidebar.markdown("# Menelusuri Kondisi Pangan di Indonesia")
 
@@ -131,22 +118,48 @@ if option == 'Pendahuluan dan Data' or option == '':
     col3.metric("Harga Rata-rata", 'Rp'+str(round(traavg,2)))
     
     '''__________________________'''
+    '''#### Grafik Produksi Jenis Pangan Nasional (Tahunan)'''
     
-    '''#### Grafik Harga Jenis Pangan Tingkat Provinsi (Pasar Modern)'''
+    bwpt = '.\produksi\produksi-bawang-putih.tsv'
+    bwmr = '.\produksi\produksi-bawang-putih.tsv'
+    bras = '.\produksi\produksi-beras.tsv'
+    cbmr = '.\produksi\produksi-cabai-merah.tsv'
+    cbrw = '.\produksi\produksi-cabai-rawit.tsv'
+    dgym = '.\produksi\produksi-daging-ayam.tsv'
+    dgsp = '.\produksi\produksi-daging-sapi.tsv'
+    glps = '.\produksi\produksi-gula-pasir.tsv'
+    tlym = '.\produksi\produksi-telur-ayam.tsv'
     
+    ts_ble = (bras, dgym, dgsp, tlym, bwmr, bwpt, cbmr, cbrw, glps)
+    
+    prod = st.selectbox(
+        'Jenis Pangan untuk Produksi',
+        jen_pan)
+    
+    for i in range(0,len(ts_ble)):
+        if prod == jen_pan[i]:  #== jen_pan(i)
+            tbl = pd.read_csv(ts_ble[i], sep="\t")
 
+            diagram = alt.Chart(tbl).mark_bar().encode(
+                x=tbl.columns[1]+':O', #'Nama:O',
+                y=tbl.columns[2] #"Nilai / Ton", +':Q'
+                ).properties(width=650)
+            
+            st.altair_chart(diagram)
+            
+            '#### Dalam satuan '+ tbl.columns[2]
+            
+            col1, col2, col3 = st.columns(3)
+            col1.metric("Produksi Tertinggi",str(tbl[tbl.columns[2]].max()))
+            col2.metric("Produksi Terendah", str(tbl[tbl.columns[2]].min()))
+            col3.metric("Rata-rata Produksi",str(round(tbl[tbl.columns[2]].mean(),2)))
+            
 
-    
-    '''#### Grafik Harga Jenis Pangan Tingkat Provinsi (Pasar Tradisional)'''
-    
-    '''#### Grafik Produksi Jenis Pangan Nasional'''
+    '''## Analisa dan Model'''
+    '''#### Grafik sebaran korelasi antara harga dengan produksi jenis pangan'''
     
     
-    '''
-    
-    ## Analisa dan Model
-    Untuk Analisa ini Akan disusun dengan Model Yang Optimal dan akan diupdate nanti.
-    '''
+    '''#### Pemodelan dan akurasi '''
     
     
     
@@ -166,7 +179,7 @@ elif option == 'Kesimpulan dan Daftar Pustaka':
 ## Bagaimana Kesimpulannya? Apakah ada Rekomendasi yang memungkinkan?
 
 Dengan melihat Grafik Harga setiap komoditas pangan yang lebih dari signifikan, jelas Pemerintah (Khusus untuk Kementerian Pertanian, Kementerian Perdagangan, dan yang terkait lainnya) mesti lebih memerhatikan kebutuhan rakyatnya supaya tidak merosot daya belinya.
-Bahkan bagi Wilayah Indonesia Bagian Timur yang banyak komoditas pangan yang melonjak harganya. Ini juga diperparah dengan data dari daerah-daerah lain yang tidak dipantau yang memperparah kondisi pangan yang sebenarnya.
+Terlebih sejak tahun lalu (2021) banyak komoditas pangan yang melonjak harganya. Ini juga diperparah dengan data dari daerah-daerah lain yang tidak dipantau yang memperparah kondisi pangan yang sebenarnya.
 
 Semestinya diperlukan tinjauan dan mendaur ulang program2 lama yang bisa efektif meningkatkan produksi pangan dalam negeri, dan setidaknya bisa mengimbangi ekspor-impor agar semakin kuat ketersediaan bahan-bahan tersebut dalan kondisi terbaik.
 
@@ -179,7 +192,8 @@ Semestinya diperlukan tinjauan dan mendaur ulang program2 lama yang bisa efektif
 - Sadiyah, Halimatus.2022.*Taiwan Sebut Asal-usul Virus COVID-19 Bukan dari Pasar Wuhan*.https://www.cnbcindonesia.com/lifestyle/20220930102306-33-376204/taiwan-sebut-asal-usul-virus-covid-19-bukan-dari-pasar-wuhan (Diakses 9 Oktober 2022)
 - P.S., Tommy & sef.2022.*Ini Awal Mula Perang Rusia-Ukraina, Akankah Segera Berakhir?*.https://www.cnbcindonesia.com/news/20220228064546-4-318875/ini-awal-mula-perang-rusia-ukraina-akankah-segera-berakhir/1. (Diakses 10 Oktober 2022)
 - Nugroho, Agus D..2022.*Perang, Krisis Pangan, dan Diplomasi Jokowi*.https://news.detik.com/kolom/d-6168790/perang-krisis-pangan-dan-diplomasi-jokowi. (Diakses 10 Oktober 2022)
-- Pusat Informasi Harga Pangan Strategis Nasional(PIHPS Nasional).2022.Informasi Harga Pangan Antar Daerah.https://hargapangan.id/. (Diakses 9-11 Oktober 2022)
+- Pusat Informasi Harga Pangan Strategis Nasional(PIHPS Nasional).2022.*Informasi Harga Pangan Antar Daerah*.https://hargapangan.id/. (Diakses 9-11 Oktober 2022)
+- databooks,katadata.co.id.2022.*Portal data terlengkap dan terpercaya*.https://databoks.katadata.co.id/ (Diakses 18-19 Oktober 2022)
 '''
 
 

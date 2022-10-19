@@ -1,5 +1,31 @@
+search key : data produksi indonesia beras OR daging ayam sapi OR minyak goreng OR bawang merah putih OR cabai merah rawit OR gula pasir OR telur ayam
+
+color=alt.condition(
+        alt.datum.year == 2021,
+        alt.value('red'),   
+        alt.value('grey') 
+    )
+
+    '''#### Grafik Harga Jenis Pangan Tingkat Provinsi (Pasar Modern)'''
+    
+
+
+    
+    '''#### Grafik Harga Jenis Pangan Tingkat Provinsi (Pasar Tradisional)'''
+
+
 USING IN THE FUTURE
 +++++++++++++++++++++++++++++++++++++++++++++++++
+
+def bar0(link):
+def graph0(link):
+    link = link.replace('\t', ' ')
+    spot = pd.read_excel(link)
+    spot_ = spot.replace('-',0)
+    spot2 = spot_.drop(['No.', '11/2022'], axis=1)
+    spot3 = spot2.melt('Provinsi', var_name='Periode(Bln)', value_name='Harga(Rp)')
+    spot31 = spot3['Harga(Rp)'].astype(int)
+    return spot31
 
 .lower()
 
@@ -107,3 +133,7 @@ Dengan ini diharapkan bisa menemukan solusi yang tepat untuk direkomendasikan se
 properties(title="Grafik Harga Pangan 2020 - 2022")
 properties(title="Grafik Harga Pangan 2020 - 2022")
 
+minyak sawit
+
+2021	3.760.000
+2022	4.228.000
