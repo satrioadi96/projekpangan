@@ -42,7 +42,7 @@ if option == 'Pendahuluan dan Data' or option == '':
     Ringkasan data yang dikelompokkan dalam 10 jenis pangan berikut.
     '''
     st.image(Image.open('sepuluh pangan.png'))
-    '''Dengan sumber data sekunder, ini akan dibagi dalam periode bulanan. Dengan jabaran: Harga, Produksi, dan Ekspor-Impor'''
+    '''Dengan sumber data sekunder, ini akan dibagi dalam periode bulanan dan tahunan. Dengan jabaran: Harga, Produksi, dan Ekspor-Impor'''
     
     dfm = pd.read_excel("daerah/harga-pasar-modern-daerah.xls")
     dft = pd.read_excel("daerah/harga-pasar-tradisional-daerah.xls")
