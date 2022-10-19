@@ -120,15 +120,15 @@ if option == 'Pendahuluan dan Data' or option == '':
     '''__________________________'''
     '''#### Grafik Produksi Jenis Pangan Nasional (Tahunan)'''
     
-    bwpt = '.\produksi\produksi-bawang-putih.tsv'
-    bwmr = '.\produksi\produksi-bawang-putih.tsv'
-    bras = '.\produksi\produksi-beras.tsv'
-    cbmr = '.\produksi\produksi-cabai-merah.tsv'
-    cbrw = '.\produksi\produksi-cabai-rawit.tsv'
-    dgym = '.\produksi\produksi-daging-ayam.tsv'
-    dgsp = '.\produksi\produksi-daging-sapi.tsv'
-    glps = '.\produksi\produksi-gula-pasir.tsv'
-    tlym = '.\produksi\produksi-telur-ayam.tsv'
+    bwpt = 'produksi/produksi-bawang-putih.tsv'
+    bwmr = 'produksi/produksi-bawang-putih.tsv'
+    bras = 'produksi/produksi-beras.tsv'
+    cbmr = 'produksi/produksi-cabai-merah.tsv'
+    cbrw = 'produksi/produksi-cabai-rawit.tsv'
+    dgym = 'produksi/produksi-daging-ayam.tsv'
+    dgsp = 'produksi/produksi-daging-sapi.tsv'
+    glps = 'produksi/produksi-gula-pasir.tsv'
+    tlym = 'produksi/produksi-telur-ayam.tsv'
     
     ts_ble = (bras, dgym, dgsp, tlym, bwmr, bwpt, cbmr, cbrw, glps)
     
