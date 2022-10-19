@@ -11,9 +11,10 @@ jen_pan = ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
 def img_header():
     image = Image.open('img-title.jpg')
     st.image(image)
-    '''Penyusun oleh **Satrio Adi Prawiro**  [Lisensi CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)'''
+    '''Penyusun oleh **Satrio Adi Prawiro**'''
     '''[Email](mailto:prawiro.96@gmail.com) | [Github](https://github.com/satrioadi96) | [Linkedin](https://www.linkedin.com/in/satrio-adi-prawiro-64617a162)'''
-    st.write('_________________')
+    '''[Lisensi CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)'''
+    #st.write('_________________')
 
 # ----------------------------------------
 
@@ -71,11 +72,9 @@ if option == 'Pendahuluan dan Data' or option == '':
     y=alt.Y('Harga(Rp)'),
     color=alt.Color("Komoditas(Rp)")
     )
-
-    
     st.altair_chart(chart, use_container_width=True)
     
-    #
+    
     momax = melet2[melet2['Komoditas(Rp)'] == cmdty1]['Harga(Rp)'].max()
     momin = melet2[melet2['Komoditas(Rp)'] == cmdty1]['Harga(Rp)'].min()
     moavg = melet2[melet2['Komoditas(Rp)'] == cmdty1]['Harga(Rp)'].mean()
@@ -102,7 +101,6 @@ if option == 'Pendahuluan dan Data' or option == '':
     
     st.altair_chart(chart, use_container_width=True)
     
-    #
     tramax = telem2[telem2['Komoditas(Rp)'] == cmdty2]['Harga(Rp)'].max()
     tramin = telem2[telem2['Komoditas(Rp)'] == cmdty2]['Harga(Rp)'].min()
     traavg = telem2[telem2['Komoditas(Rp)'] == cmdty2]['Harga(Rp)'].mean()
@@ -132,6 +130,7 @@ if option == 'Pendahuluan dan Data' or option == '':
     for i in range(0,len(ts_ble)):
         if prod == jen_pan[i]:  #== jen_pan(i)
             tbl = pd.read_csv(ts_ble[i], sep="\t")
+            tbl.rename(columns = {'Nama':'Tahun'}, inplace = True)
 
             diagram = alt.Chart(tbl).mark_bar().encode(
                 x=tbl.columns[1]+':O', #'Nama:O',
@@ -140,7 +139,7 @@ if option == 'Pendahuluan dan Data' or option == '':
             
             st.altair_chart(diagram)
             
-            st.write("     Beberapa tahun terakhir ini, jenis pangan "+jen_pan[i]+" memproduksi paling tinggi "+str(tbl[tbl.columns[2]].max())+" dan paling rendah "+str(tbl[tbl.columns[2]].min())+'.')
+            st.write("Beberapa tahun terakhir ini, jenis pangan "+jen_pan[i]+" memproduksi paling tinggi "+str(tbl[tbl.columns[2]].max())+" dan paling rendah "+str(tbl[tbl.columns[2]].min())+'.')
             st.write('Dalam satuan '+tbl.columns[2]+', rata-rata produksinya adalah '+str(round(tbl[tbl.columns[2]].mean(),2))+'.')
 
     '''## Analisa dan Model'''
