@@ -1,3 +1,28 @@
+CATATAN MENTOR - FEEDBACK:
+a. perbarui kesimpulan, fokuskan untuk audiens publik. buat poin2nya saja.
+b. perbaiki data chart bagian tahunnya (tahun harus kelihatan atau format 08/2022 misal)
+c. jangan teralalu banyak tapilkan angka2 (ribet. buat deskripsi dalam 2-3 kalimat)
+
+UPDATE:
+a. scatterplot untuk pengaruh harga dgn produksi - ekspor impor
+b. model optimal
+===========================================================================================
+
+    
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Harga Tertinggi", 'Rp'+str(tramax)+',00')
+    col2.metric("Harga Terendah", 'Rp'+str(tramin)+',00')
+    col3.metric("Harga Rata-rata", 'Rp'+str(round(traavg,2)))
+
+
+            '#### Dalam satuan '+ tbl.columns[2]
+            
+            col1, col2, col3 = st.columns(3)
+            col1.metric("Produksi Tertinggi",str(tbl[tbl.columns[2]].max()))
+            col2.metric("Produksi Terendah", str(tbl[tbl.columns[2]].min()))
+            col3.metric("Rata-rata Produksi",str(round(tbl[tbl.columns[2]].mean(),2)))
+
+
 search key : data produksi indonesia beras OR daging ayam sapi OR minyak goreng OR bawang merah putih OR cabai merah rawit OR gula pasir OR telur ayam
 
 color=alt.condition(

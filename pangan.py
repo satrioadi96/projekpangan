@@ -82,10 +82,8 @@ if option == 'Pendahuluan dan Data' or option == '':
     momin = melet2[melet2['Komoditas(Rp)'] == cmdty1]['Harga(Rp)'].min()
     moavg = melet2[melet2['Komoditas(Rp)'] == cmdty1]['Harga(Rp)'].mean()
     
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Harga Tertinggi", 'Rp'+str(momax)+',00')
-    col2.metric("Harga Terendah", 'Rp'+str(momin)+',00')
-    col3.metric("Harga Rata-rata", 'Rp'+str(round(moavg,2)))
+    st.write("Pada Pasar Modern, harga tertinggi dari jenis pangan "+cmdty1+" adalah Rp"+str(momax)+",00 dan harga terendahnya adalah Rp"+str(momin)+',00.')
+    st.write("Rata-rata seharga Rp"+str(round(moavg,2))+'.')
     
     '''#### Grafik Harga Jenis Pangan Tingkat Nasional (Pasar Tradisional)'''
     
@@ -110,11 +108,9 @@ if option == 'Pendahuluan dan Data' or option == '':
     tramax = telem2[telem2['Komoditas(Rp)'] == cmdty2]['Harga(Rp)'].max()
     tramin = telem2[telem2['Komoditas(Rp)'] == cmdty2]['Harga(Rp)'].min()
     traavg = telem2[telem2['Komoditas(Rp)'] == cmdty2]['Harga(Rp)'].mean()
-    
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Harga Tertinggi", 'Rp'+str(tramax)+',00')
-    col2.metric("Harga Terendah", 'Rp'+str(tramin)+',00')
-    col3.metric("Harga Rata-rata", 'Rp'+str(round(traavg,2)))
+
+    st.write("Pada Pasar Tradisional, harga tertinggi dari jenis pangan "+cmdty2+" adalah Rp"+str(tramax)+",00 dan harga terendahnya adalah Rp"+str(tramin)+',00.')
+    st.write("Rata-rata seharga Rp"+str(round(traavg,2))+'.')
     
     '''__________________________'''
     '''#### Grafik Produksi Jenis Pangan Nasional (Tahunan)'''
@@ -146,13 +142,8 @@ if option == 'Pendahuluan dan Data' or option == '':
             
             st.altair_chart(diagram)
             
-            '#### Dalam satuan '+ tbl.columns[2]
-            
-            col1, col2, col3 = st.columns(3)
-            col1.metric("Produksi Tertinggi",str(tbl[tbl.columns[2]].max()))
-            col2.metric("Produksi Terendah", str(tbl[tbl.columns[2]].min()))
-            col3.metric("Rata-rata Produksi",str(round(tbl[tbl.columns[2]].mean(),2)))
-            
+            st.write("     Beberapa tahun terakhir ini, jenis pangan "+jen_pan[i]+" memproduksi paling tinggi "+str(tbl[tbl.columns[2]].max())+" dan paling rendah "+str(tbl[tbl.columns[2]].min())+'.')
+            st.write('Dalam satuan '+tbl.columns[2]+', rata-rata produksinya adalah '+str(round(tbl[tbl.columns[2]].mean(),2))+'.')
 
     '''## Analisa dan Model'''
     '''#### Grafik sebaran korelasi antara harga dengan produksi jenis pangan'''
