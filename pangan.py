@@ -1,5 +1,3 @@
-#from os.path import expanduser as ospath
-#import numpy as np
 import streamlit as st
 import pandas as pd
 from PIL import Image
@@ -13,7 +11,7 @@ jen_pan = ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
 def img_header():
     image = Image.open('img-title.jpg')
     st.image(image)
-    '''Penyusun oleh **Satrio Adi Prawiro**'''
+    '''Penyusun oleh **Satrio Adi Prawiro**  [Lisensi CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)'''
     '''[Email](mailto:prawiro.96@gmail.com) | [Github](https://github.com/satrioadi96) | [Linkedin](https://www.linkedin.com/in/satrio-adi-prawiro-64617a162)'''
     st.write('_________________')
 
