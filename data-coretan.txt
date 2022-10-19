@@ -137,3 +137,6 @@ minyak sawit
 
 2021	3.760.000
 2022	4.228.000
+
+
+    - daerah mana yang paling banyak produksi bahan pangan utama

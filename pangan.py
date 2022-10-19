@@ -27,7 +27,6 @@ option = st.sidebar.selectbox('Daftar Bab/Section:',
 st.sidebar.markdown('''
                     Target:
     - deskripsi harga pangan setiap periode bulanan
-    - daerah mana yang paling banyak produksi bahan pangan utama
     - menelaah pengaruh produksi terhadap harga maupun ekspor-impornya
     - model yang optimal untuk memperkuat pengaruhnya. 
                     ''')
