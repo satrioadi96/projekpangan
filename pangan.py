@@ -13,7 +13,8 @@ def img_header():
     st.image(image)
     '''Penyusun oleh **Satrio Adi Prawiro**'''
     '''[Email](mailto:prawiro.96@gmail.com) | [Github](https://github.com/satrioadi96) | [Linkedin](https://www.linkedin.com/in/satrio-adi-prawiro-64617a162)'''
-    '''[Lisensi CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)'''
+    '''[![Lisensi CC-BY 3.0](https://i.creativecommons.org/l/by/3.0/88x31.png)](http://creativecommons.org/licenses/by/3.0/)'''
+    #'''[![image alt text](image URL link)](anchor link)'''
     #st.write('_________________')
 
 # ----------------------------------------
@@ -66,12 +67,13 @@ if option == 'Pendahuluan dan Data' or option == '':
     melet2['Periode(Bln)']= pd.to_datetime(melet2['Periode(Bln)'])
     
     chart = alt.Chart(melet2).mark_line(
-        point=alt.OverlayMarkDef(color="blue")
+        point=alt.OverlayMarkDef(color="")
         ).encode(
     x=alt.X('Periode(Bln)'),
     y=alt.Y('Harga(Rp)'),
-    color=alt.Color("Komoditas(Rp)")
-    )
+    color=alt.Color("Komoditas(Rp)"),
+    tooltip=['Komoditas(Rp)', 'Periode(Bln)', 'Harga(Rp)']
+    ).interactive()
     st.altair_chart(chart, use_container_width=True)
     
     
@@ -92,12 +94,13 @@ if option == 'Pendahuluan dan Data' or option == '':
     telem2['Periode(Bln)']= pd.to_datetime(telem2['Periode(Bln)'])
     
     chart = alt.Chart(telem2).mark_line(
-        point=alt.OverlayMarkDef(color="blue")
+        point=alt.OverlayMarkDef(color="")
         ).encode(
     x=alt.X('Periode(Bln)'),
     y=alt.Y('Harga(Rp)'),
-    color=alt.Color("Komoditas(Rp)")
-    )
+    color=alt.Color("Komoditas(Rp)"),
+    tooltip=['Komoditas(Rp)', 'Periode(Bln)', 'Harga(Rp)']
+    ).interactive()
     
     st.altair_chart(chart, use_container_width=True)
     
@@ -120,8 +123,9 @@ if option == 'Pendahuluan dan Data' or option == '':
     dgsp = 'produksi/produksi-daging-sapi.tsv'
     glps = 'produksi/produksi-gula-pasir.tsv'
     tlym = 'produksi/produksi-telur-ayam.tsv'
+    mygr = 'produksi/produksi-minyak-goreng.tsv'
     
-    ts_ble = (bras, dgym, dgsp, tlym, bwmr, bwpt, cbmr, cbrw, glps)
+    ts_ble = (bras, dgym, dgsp, tlym, bwmr, bwpt, cbmr, cbrw, mygr, glps)
     
     prod = st.selectbox(
         'Jenis Pangan untuk Produksi',
@@ -132,9 +136,10 @@ if option == 'Pendahuluan dan Data' or option == '':
             tbl = pd.read_csv(ts_ble[i], sep="\t")
             tbl.rename(columns = {'Nama':'Tahun'}, inplace = True)
 
-            diagram = alt.Chart(tbl).mark_bar().encode(
+            diagram = alt.Chart(tbl).mark_bar(size=20).encode(
                 x=tbl.columns[1]+':O', #'Nama:O',
-                y=tbl.columns[2] #"Nilai / Ton", +':Q'
+                y=tbl.columns[2], #"Nilai / Ton", +':Q'
+                tooltip=[tbl.columns[2]]
                 ).properties(width=650)
             
             st.altair_chart(diagram)
@@ -181,6 +186,7 @@ Semestinya diperlukan tinjauan dan mendaur ulang program2 lama yang bisa efektif
 - Nugroho, Agus D..2022.*Perang, Krisis Pangan, dan Diplomasi Jokowi*.https://news.detik.com/kolom/d-6168790/perang-krisis-pangan-dan-diplomasi-jokowi. (Diakses 10 Oktober 2022)
 - Pusat Informasi Harga Pangan Strategis Nasional(PIHPS Nasional).2022.*Informasi Harga Pangan Antar Daerah*.https://hargapangan.id/. (Diakses 9-11 Oktober 2022)
 - databooks,katadata.co.id.2022.*Portal data terlengkap dan terpercaya*.https://databoks.katadata.co.id/ (Diakses 18-19 Oktober 2022)
+- Gartina, Dhani dan L. S., Lucky.2020.*STATISTIK PERKEBUNAN UNGGULAN NASIONAL 2019-2021*.Jakarta:Direktorat Jenderal Perkebunan Kementerian Pertanian Republik Indonesia
 '''
 
 
