@@ -151,6 +151,8 @@ if option == 'Pendahuluan dan Data' or option == '':
     '''#### Grafik sebaran korelasi antara harga dengan produksi jenis pangan'''
     
     
+    
+    
     '''#### Pemodelan dan akurasi '''
     
     
@@ -170,11 +172,9 @@ elif option == 'Kesimpulan dan Daftar Pustaka':
     '''
 ## Bagaimana Kesimpulannya? Apakah ada Rekomendasi yang memungkinkan?
 
-Dengan melihat Grafik Harga setiap komoditas pangan yang lebih dari signifikan, jelas Pemerintah (Khusus untuk Kementerian Pertanian, Kementerian Perdagangan, dan yang terkait lainnya) mesti lebih memerhatikan kebutuhan rakyatnya supaya tidak merosot daya belinya.
-Terlebih sejak tahun lalu (2021) banyak komoditas pangan yang melonjak harganya. Ini juga diperparah dengan data dari daerah-daerah lain yang tidak dipantau yang memperparah kondisi pangan yang sebenarnya.
-
-Semestinya diperlukan tinjauan dan mendaur ulang program2 lama yang bisa efektif meningkatkan produksi pangan dalam negeri, dan setidaknya bisa mengimbangi ekspor-impor agar semakin kuat ketersediaan bahan-bahan tersebut dalan kondisi terbaik.
-
+- Masyarakat (Publik) semestinya memantau lebih dengan adanya kenaikan harga yang signifikan bahkan melonjak dan produksi pangan yang bisa merosot setiap saat.
+- Menjaga daya beli dengan membeli pangan seperlunya di pasar yang masih mengindikasikan harga yang murah dan wajar
+- Publik bisa menjadikan artikel ini sebagai masukan untuk Pemerintah (khususnya instansi yang terkait) untuk tidak mengimpor bahan pangan secara tiba-tiba yang justru merosotkan penghasilan para petani dan pekebun. akan lebih baik stok dari petani dan pekebun sendiri sepenuhnya.
 '''
 
     '''
