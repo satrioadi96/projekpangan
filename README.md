@@ -1,6 +1,6 @@
 # PROJEK PANGAN
 -------------------
 Ini adalah susudan kode berbasis Python sebagai bahas pemrograman, dan ditampilkan dalam webapp berbasis Streamlit dengan link berikut:
-[Projek Pangan](https://satrioadi96-projekpangan-pangan-c9aw93.streamlitapp.com/).
+[Projek Pangan](https://kondisipangan-satrioadi96.streamlitapp.com/).
 
-Silahkan diakses. Terima kasih
+Silahkan diakses dan mohon maaf apabila masih ada kekurangan dan kecacatan dalam projek ini. Sekian dan Terima kasih
