@@ -39,8 +39,20 @@ color=alt.condition(
     '''#### Grafik Harga Jenis Pangan Tingkat Provinsi (Pasar Tradisional)'''
 
 
+
+            
+            st.write("Beberapa tahun terakhir ini, jenis pangan "+jen_pan[i]+" memproduksi paling tinggi "+str(tbl[tbl.columns[2]].max())+" dan paling rendah "+str(tbl[tbl.columns[2]].min())+'.')
+            st.write('Dalam satuan '+tbl.columns[2]+', rata-rata produksinya adalah '+str(round(tbl[tbl.columns[2]].mean(),2))+'.')
+
+
+    '''#### Pemodelan dan akurasi '''
+
+    maupun ekspor-impornya
+    - model yang optimal untuk memperkuat pengaruhnya.     
+
 USING IN THE FUTURE
 +++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 def bar0(link):
 def graph0(link):

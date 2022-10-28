@@ -27,8 +27,7 @@ option = st.sidebar.selectbox('Daftar Bab/Section:',
 st.sidebar.markdown('''
                     Target:
     - deskripsi harga pangan setiap periode bulanan
-    - menelaah pengaruh produksi terhadap harga maupun ekspor-impornya
-    - model yang optimal untuk memperkuat pengaruhnya. 
+    - menelaah pengaruh produksi terhadap harga
                     ''')
 
 if option == 'Pendahuluan dan Data' or option == '':
@@ -150,21 +149,35 @@ if option == 'Pendahuluan dan Data' or option == '':
     '''## Analisa dan Model'''
     '''#### Grafik sebaran korelasi antara harga dengan produksi jenis pangan'''
     
+    col1, col2 = st.columns(2)
+    
+    jnpg_0 = ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
+         'Bawang Merah', 'Bawang Putih','Cabai Rawit','Minyak Goreng')
+    tymrk = ("Modern", "Tradisional")
+    corlst = pd.read_csv('korelasi/korelasi.csv')
+    
+
+    with col1:
+        markt = st.radio(
+            "Jenis Pasar",
+            tymrk)
+
+    with col2:
+        komdity = st.selectbox(
+        'Jenis Pangan',
+        jnpg_0)
     
     
-    
-    '''#### Pemodelan dan akurasi '''
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    for h in range(0,len(tymrk)):
+        for i in range(0,len(jnpg_0)):
+            if markt == tymrk[h] and komdity == jnpg_0[i]:
+                halt = alt.Chart(corlst[(corlst['Pasar']==tymrk[h]) & (corlst['Komoditas']==jnpg_0[i])]).mark_circle(size=50).encode(
+                    x='Harga',
+                    y='Produksi',
+                    tooltip=['Komoditas','Tahun','Pasar','Harga','Produksi']
+                    ).interactive()
+                
+                st.altair_chart(halt)
     
     
     
@@ -175,6 +188,7 @@ elif option == 'Kesimpulan dan Daftar Pustaka':
 - Masyarakat (Publik) semestinya memantau lebih dengan adanya kenaikan harga yang signifikan bahkan melonjak dan produksi pangan yang bisa merosot setiap saat.
 - Menjaga daya beli dengan membeli pangan seperlunya di pasar yang masih mengindikasikan harga yang murah dan wajar
 - Publik bisa menjadikan artikel ini sebagai masukan untuk Pemerintah (khususnya instansi yang terkait) untuk tidak mengimpor bahan pangan secara tiba-tiba yang justru merosotkan penghasilan para petani dan pekebun. akan lebih baik stok dari petani dan pekebun sendiri sepenuhnya.
+- Masukan berikutnya adalah ketika data-data yang ada masih terbatas, baik karena data yang hilang, periode bulanannya sedikit, maupun tidak tersedia. Ini bisa menjadi bias saat dianalisa dan implementasinya rancu (termasuk di bagian *scatterplot*), sehingga publik membutuhkan hasil implementasi data yang lebih akurat.
 '''
 
     '''
