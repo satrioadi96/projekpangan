@@ -68,6 +68,7 @@ if option == 'Pendahuluan dan Data' or option == '':
     
     '''____________________
 #### Grafik Harga Jenis Pangan Tingkat Nasional (Pasar Modern)'''
+    st.caption('Gunakan gulir pada mouse (*scroll*) atau cubit touchpad dengan dua jari di dalam diagram/grafik untuk memperbesar dan memperkecil.')
     
     cmdty1 = st.selectbox(
         'Jenis Pangan dari Pasar Modern',
@@ -124,7 +125,80 @@ if option == 'Pendahuluan dan Data' or option == '':
     st.write("Rata-rata seharga Rp"+str(round(traavg,2))+'.')
     
     '''__________________________'''
+    '''#### Grafik Produksi Jenis Pangan Nasional (Tahunan)'''
+    
+    bwpt = 'produksi/produksi-bawang-putih.tsv'
+    bwmr = 'produksi/produksi-bawang-putih.tsv'
+    bras = 'produksi/produksi-beras.tsv'
+    cbmr = 'produksi/produksi-cabai-merah.tsv'
+    cbrw = 'produksi/produksi-cabai-rawit.tsv'
+    dgym = 'produksi/produksi-daging-ayam.tsv'
+    dgsp = 'produksi/produksi-daging-sapi.tsv'
+    glps = 'produksi/produksi-gula-pasir.tsv'
+    tlym = 'produksi/produksi-telur-ayam.tsv'
+    mygr = 'produksi/produksi-minyak-goreng.tsv'
+    
+    ts_ble = (bras, dgym, dgsp, tlym, bwmr, bwpt, cbmr, cbrw, mygr, glps)
+    
+    prod = st.selectbox(
+        'Jenis Pangan untuk Produksi',
+        jen_pan)
+    
+    for i in range(0,len(ts_ble)):
+        if prod == jen_pan[i]:
+            tbl = pd.read_csv(ts_ble[i], sep="\t")
+            tbl.rename(columns = {'Nama':'Tahun'}, inplace = True)
+
+            diagram = alt.Chart(tbl).mark_bar(size=20).encode(
+                x=tbl.columns[1]+':O',
+                y=tbl.columns[2],
+                tooltip=[tbl.columns[2]]
+                ).properties(width=650)
+            
+            st.altair_chart(diagram, use_container_width=True)
+            
+            st.write("Beberapa tahun terakhir ini, jenis pangan "+jen_pan[i]+" memproduksi paling tinggi "+str(tbl[tbl.columns[2]].max())+" dan paling rendah "+str(tbl[tbl.columns[2]].min())+'.')
+            st.write('Dalam satuan '+tbl.columns[2]+', rata-rata produksinya adalah '+str(round(tbl[tbl.columns[2]].mean(),2))+'.')
+
+    '''__________________________'''
+    #'''## Analisa dan Model'''
+    '''#### Grafik sebaran korelasi antara harga dengan produksi jenis pangan'''
+    
+    col1, col2 = st.columns(2)
+    
+    jnpg_0 = ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
+         'Bawang Merah', 'Bawang Putih','Cabai Rawit','Minyak Goreng')
+    corlst = pd.read_csv('korelasi/korelasi.csv')
+    
+
+    with col1:
+        markt = st.radio(
+            "Jenis Pasar",
+            tymrk)
+
+    with col2:
+        komdity = st.selectbox(
+        'Jenis Pangan yang dikorelasikan',
+        jnpg_0)
+        
+    
+    for h in range(0,len(tymrk)):
+            for i in range(0,len(jnpg_0)):
+                if markt == tymrk[h] and komdity == jnpg_0[i]:
+                    halt = alt.Chart(corlst[(corlst['Pasar']==tymrk[h]) & (corlst['Komoditas']==jnpg_0[i])]).mark_circle(
+                        size=70,color='yellow',
+                        ).encode(
+                        x='Harga',
+                        y='Produksi',
+                        tooltip=['Komoditas','Tahun','Pasar','Harga','Produksi']
+                        ).interactive()
+                    
+                    st.altair_chart(halt) #, use_container_width=True)
+    
+    '''__________________________'''
+    
     '''#### Grafik Harga Jenis Pangan per Provinsi (Bulanan)'''
+    st.caption('Info grafik tambahan')
     
     colA, colB, colC = st.columns(3)
 
@@ -177,80 +251,17 @@ if option == 'Pendahuluan dan Data' or option == '':
     lsmin = llss3['Harga(Rp)'].min()
     lsavg = llss3['Harga(Rp)'].mean()
     
-    st.write("Pada Pasar "+tymrk[h]+" di Provinsi "+popro[j]+", harga pangan "+cmdty3+" per kilogram yang tertinggi adalah Rp"+str(lsmax)+",00 dan harga terendahnya adalah Rp"+str(lsmin)+',00.')
-    st.write("Rata-rata seharga Rp"+str(round(lsavg,2))+'.')
+    st.write("Pada Pasar "+tymrk[h]+" di Provinsi "+popro[j]
+             +", harga pangan "+cmdty3+" per kilogram yang tertinggi adalah Rp"+str(lsmax)
+             +",00 dan harga terendahnya adalah Rp"+str(lsmin)+',00. '
+             +"Rata-rata seharga Rp"+str(round(lsavg,2))+'.')
     
     
-    '''__________________________'''
-    '''#### Grafik Produksi Jenis Pangan Nasional (Tahunan)'''
     
-    bwpt = 'produksi/produksi-bawang-putih.tsv'
-    bwmr = 'produksi/produksi-bawang-putih.tsv'
-    bras = 'produksi/produksi-beras.tsv'
-    cbmr = 'produksi/produksi-cabai-merah.tsv'
-    cbrw = 'produksi/produksi-cabai-rawit.tsv'
-    dgym = 'produksi/produksi-daging-ayam.tsv'
-    dgsp = 'produksi/produksi-daging-sapi.tsv'
-    glps = 'produksi/produksi-gula-pasir.tsv'
-    tlym = 'produksi/produksi-telur-ayam.tsv'
-    mygr = 'produksi/produksi-minyak-goreng.tsv'
     
-    ts_ble = (bras, dgym, dgsp, tlym, bwmr, bwpt, cbmr, cbrw, mygr, glps)
     
-    prod = st.selectbox(
-        'Jenis Pangan untuk Produksi',
-        jen_pan)
     
-    for i in range(0,len(ts_ble)):
-        if prod == jen_pan[i]:
-            tbl = pd.read_csv(ts_ble[i], sep="\t")
-            tbl.rename(columns = {'Nama':'Tahun'}, inplace = True)
-
-            diagram = alt.Chart(tbl).mark_bar(size=20).encode(
-                x=tbl.columns[1]+':O',
-                y=tbl.columns[2],
-                tooltip=[tbl.columns[2]]
-                ).properties(width=650)
-            
-            st.altair_chart(diagram, use_container_width=True)
-            
-            st.write("Beberapa tahun terakhir ini, jenis pangan "+jen_pan[i]+" memproduksi paling tinggi "+str(tbl[tbl.columns[2]].max())+" dan paling rendah "+str(tbl[tbl.columns[2]].min())+'.')
-            st.write('Dalam satuan '+tbl.columns[2]+', rata-rata produksinya adalah '+str(round(tbl[tbl.columns[2]].mean(),2))+'.')
-
-    '''__________________________'''
-    '''## Analisa dan Model'''
-    '''#### Grafik sebaran korelasi antara harga dengan produksi jenis pangan'''
     
-    col1, col2 = st.columns(2)
-    
-    jnpg_0 = ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
-         'Bawang Merah', 'Bawang Putih','Cabai Rawit','Minyak Goreng')
-    corlst = pd.read_csv('korelasi/korelasi.csv')
-    
-
-    with col1:
-        markt = st.radio(
-            "Jenis Pasar",
-            tymrk)
-
-    with col2:
-        komdity = st.selectbox(
-        'Jenis Pangan yang dikorelasikan',
-        jnpg_0)
-        
-    
-    for h in range(0,len(tymrk)):
-            for i in range(0,len(jnpg_0)):
-                if markt == tymrk[h] and komdity == jnpg_0[i]:
-                    halt = alt.Chart(corlst[(corlst['Pasar']==tymrk[h]) & (corlst['Komoditas']==jnpg_0[i])]).mark_circle(
-                        size=70,color='yellow',
-                        ).encode(
-                        x='Harga',
-                        y='Produksi',
-                        tooltip=['Komoditas','Tahun','Pasar','Harga','Produksi']
-                        ).interactive()
-                    
-                    st.altair_chart(halt, use_container_width=True)
     
     
     
