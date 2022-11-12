@@ -7,6 +7,17 @@ import altair as alt
 jen_pan = ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
          'Bawang Merah', 'Bawang Putih', 'Cabai Merah', 'Cabai Rawit',
          'Minyak Goreng', 'Gula Pasir')
+tymrk = ("Modern", "Tradisional")
+popro = ('SEMUA PROVINSI', 'ACEH', 'SUMATERA UTARA', 'SUMATERA BARAT',
+       'RIAU', 'KEPULAUAN RIAU', 'JAMBI', 'BENGKULU', 'SUMATERA SELATAN',
+       'KEPULAUAN BANGKA BELITUNG', 'LAMPUNG', 'BANTEN', 'JAWA BARAT',
+       'DKI JAKARTA', 'JAWA TENGAH', 'DI YOGYAKARTA', 'JAWA TIMUR',
+       'BALI', 'NUSA TENGGARA BARAT', 'NUSA TENGGARA TIMUR',
+       'KALIMANTAN BARAT', 'KALIMANTAN SELATAN', 'KALIMANTAN TENGAH',
+       'KALIMANTAN TIMUR', 'KALIMANTAN UTARA', 'GORONTALO',
+       'SULAWESI SELATAN', 'SULAWESI TENGGARA', 'SULAWESI TENGAH',
+       'SULAWESI UTARA', 'SULAWESI BARAT', 'MALUKU', 'MALUKU UTARA',
+       'PAPUA', 'PAPUA BARAT')
 
 def img_header():
     image = Image.open('img-title.jpg')
@@ -59,7 +70,7 @@ if option == 'Pendahuluan dan Data' or option == '':
 #### Grafik Harga Jenis Pangan Tingkat Nasional (Pasar Modern)'''
     
     cmdty1 = st.selectbox(
-        'Jenis Pangan',
+        'Jenis Pangan dari Pasar Modern',
         jen_pan)
     
     melet2 = melet[melet['Komoditas(Rp)']== cmdty1]
@@ -83,10 +94,12 @@ if option == 'Pendahuluan dan Data' or option == '':
     st.write("Pada Pasar Modern, harga tertinggi dari jenis pangan "+cmdty1+" adalah Rp"+str(momax)+",00 dan harga terendahnya adalah Rp"+str(momin)+',00.')
     st.write("Rata-rata seharga Rp"+str(round(moavg,2))+'.')
     
+    '''Dapat dilihat bahwa jenis pangan''' #keterangan blm selesai
+    
     '''#### Grafik Harga Jenis Pangan Tingkat Nasional (Pasar Tradisional)'''
     
     cmdty2 = st.selectbox(
-        'Jenis Pangan ',
+        'Jenis Pangan dari Pasar Tradisional',
         jen_pan)
     
     telem2 = telem[telem['Komoditas(Rp)']== cmdty2]
@@ -111,6 +124,66 @@ if option == 'Pendahuluan dan Data' or option == '':
     st.write("Rata-rata seharga Rp"+str(round(traavg,2))+'.')
     
     '''__________________________'''
+    '''#### Grafik Harga Jenis Pangan per Provinsi (Bulanan)'''
+    
+    colA, colB, colC = st.columns(3)
+
+    with colA:
+        mrkt = st.radio(
+            "Jenis Pasar per Provinsi",
+            tymrk)
+
+    with colB:
+        cmdty3 = st.selectbox(
+        'Jenis Pangan per Provinsi',
+        jen_pan)
+        
+    with colC:
+        provc = st.selectbox('Provinsi (Daerah)',popro)
+        
+    bm='-komoditas-bawang-merah.xls'
+    bp='-komoditas-bawang-putih.xls'
+    br='-komoditas-beras.xls'
+    cm='-komoditas-cabai-merah.xls'
+    cr='-komoditas-cabai-rawit.xls'
+    da='-komoditas-daging-ayam.xls'
+    ds='-komoditas-daging-sapi.xls'
+    gp='-komoditas-gula-pasir.xls'
+    mg='-komoditas-minyak-goreng.xls'
+    ta='-komoditas-telur-ayam.xls'
+        
+    li_pgn = (br,da,ds,ta,bm,bp,cm,cr,mg,gp)
+        
+    for h in range(len(tymrk)):
+        for i in range(len(jen_pan)):
+            for j in range(len(provc)):
+                if mrkt == tymrk[h] and cmdty3 == jen_pan[i] and provc == popro[j]:
+                        laslast = pd.read_excel('./'+tymrk[h].lower()+'/harga-pasar-'+tymrk[h].lower()+li_pgn[i])
+                        llss = laslast.drop(['No.', '11/2022'], axis=1).melt('Provinsi', var_name='Periode(Bln)', value_name='Harga(Rp)')
+                        llss3 = llss[llss['Provinsi'] == popro[j]]
+                        llss3['Periode(Bln)']= pd.to_datetime(llss3['Periode(Bln)'])
+                        
+                        borak = alt.Chart(llss3).mark_line(point=alt.OverlayMarkDef(color="")
+                                                   ).encode(
+                                                       x=alt.X('Periode(Bln)'),
+                                                       y=alt.Y('Harga(Rp)'),
+                                                       color=alt.Color("Provinsi"),
+                                                       tooltip=['Provinsi', 'Periode(Bln)', 'Harga(Rp)']
+                                                       ).interactive()
+                                                   
+                        st.altair_chart(borak, use_container_width=True)
+    
+    lsmax = llss3[llss3['Provinsi'] == provc]['Harga(Rp)'].max()
+    lsmin = llss3[llss3['Provinsi'] == provc]['Harga(Rp)'].min()
+    lsavg = llss3[llss3['Provinsi'] == provc]['Harga(Rp)'].mean()
+    
+    #if 
+
+    st.write("Pada Pasar "+tymrk[h]+" di Provinsi "+popro[j]+", harga pangan "+cmdty3+" yang tertinggi adalah Rp"+str(lsmax)+",00 dan harga terendahnya adalah Rp"+str(lsmin)+',00.')
+    st.write("Rata-rata seharga Rp"+str(round(lsavg,2))+'.')
+    
+    
+    '''__________________________'''
     '''#### Grafik Produksi Jenis Pangan Nasional (Tahunan)'''
     
     bwpt = 'produksi/produksi-bawang-putih.tsv'
@@ -131,7 +204,7 @@ if option == 'Pendahuluan dan Data' or option == '':
         jen_pan)
     
     for i in range(0,len(ts_ble)):
-        if prod == jen_pan[i]:  #== jen_pan(i)
+        if prod == jen_pan[i]:
             tbl = pd.read_csv(ts_ble[i], sep="\t")
             tbl.rename(columns = {'Nama':'Tahun'}, inplace = True)
 
@@ -153,7 +226,6 @@ if option == 'Pendahuluan dan Data' or option == '':
     
     jnpg_0 = ('Beras', 'Daging Ayam', 'Daging Sapi', 'Telur Ayam',
          'Bawang Merah', 'Bawang Putih','Cabai Rawit','Minyak Goreng')
-    tymrk = ("Modern", "Tradisional")
     corlst = pd.read_csv('korelasi/korelasi.csv')
     
 
@@ -164,20 +236,22 @@ if option == 'Pendahuluan dan Data' or option == '':
 
     with col2:
         komdity = st.selectbox(
-        'Jenis Pangan',
+        'Jenis Pangan yang dikorelasikan',
         jnpg_0)
-    
+        
     
     for h in range(0,len(tymrk)):
-        for i in range(0,len(jnpg_0)):
-            if markt == tymrk[h] and komdity == jnpg_0[i]:
-                halt = alt.Chart(corlst[(corlst['Pasar']==tymrk[h]) & (corlst['Komoditas']==jnpg_0[i])]).mark_circle(size=50).encode(
-                    x='Harga',
-                    y='Produksi',
-                    tooltip=['Komoditas','Tahun','Pasar','Harga','Produksi']
-                    ).interactive()
-                
-                st.altair_chart(halt)
+            for i in range(0,len(jnpg_0)):
+                if markt == tymrk[h] and komdity == jnpg_0[i]:
+                    halt = alt.Chart(corlst[(corlst['Pasar']==tymrk[h]) & (corlst['Komoditas']==jnpg_0[i])]).mark_circle(
+                        size=70,color='yellow',
+                        ).encode(
+                        x='Harga',
+                        y='Produksi',
+                        tooltip=['Komoditas','Tahun','Pasar','Harga','Produksi']
+                        ).interactive()
+                    
+                    st.altair_chart(halt)
     
     
     
