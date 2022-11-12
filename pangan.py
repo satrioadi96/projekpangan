@@ -186,7 +186,7 @@ if option == 'Pendahuluan dan Data' or option == '':
             for i in range(0,len(jnpg_0)):
                 if markt == tymrk[h] and komdity == jnpg_0[i]:
                     halt = alt.Chart(corlst[(corlst['Pasar']==tymrk[h]) & (corlst['Komoditas']==jnpg_0[i])]).mark_circle(
-                        size=70,color='yellow',
+                        size=70,color='magenta',
                         ).encode(
                         x='Harga',
                         y='Produksi',
@@ -257,13 +257,7 @@ if option == 'Pendahuluan dan Data' or option == '':
              +"Rata-rata seharga Rp"+str(round(lsavg,2))+'.')
     
     
-    
-    
-    
-    
-    
-    
-    
+
     
 elif option == 'Kesimpulan dan Daftar Pustaka':
     '''
@@ -271,8 +265,11 @@ elif option == 'Kesimpulan dan Daftar Pustaka':
 
 - Masyarakat (Publik) semestinya memantau lebih dengan adanya kenaikan harga yang signifikan bahkan melonjak dan produksi pangan yang bisa merosot setiap saat.
 - Menjaga daya beli dengan membeli pangan seperlunya di pasar yang masih mengindikasikan harga yang murah dan wajar
-- Publik bisa menjadikan artikel ini sebagai masukan untuk Pemerintah (khususnya instansi yang terkait) untuk tidak mengimpor bahan pangan secara tiba-tiba yang justru merosotkan penghasilan para petani dan pekebun. akan lebih baik stok dari petani dan pekebun sendiri sepenuhnya.
+- Publik bisa menjadikan infografis ini sebagai masukan untuk Pemerintah (khususnya instansi yang terkait) untuk tidak mengimpor bahan pangan secara tiba-tiba yang justru merosotkan penghasilan para petani dan pekebun. akan lebih baik stok dari petani dan pekebun sendiri sepenuhnya.
 - Masukan berikutnya adalah ketika data-data yang ada masih terbatas, baik karena data yang hilang, periode bulanannya sedikit, maupun tidak tersedia. Ini bisa menjadi bias saat dianalisa dan implementasinya rancu (termasuk di bagian *scatterplot*), sehingga publik membutuhkan hasil implementasi data yang lebih akurat.
+- Untuk grafis/diagram data-data saat ini menunjukkan:
+    a. banyak jenis pangan seperti bawang dan cabai yang tidak stabil dalam 2 tahun terakhir ini, namun stok produksi naik signifikan
+    b. untuk korelasi, ada yag bernilai negatif dan landai (harga pangan bisa turun sewaktu-waktu karena produksi pangan yang meningkat signifikan)
 '''
 
     '''
