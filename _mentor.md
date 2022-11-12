@@ -46,3 +46,10 @@ Data akan ditampilkan beserta deskripsinya dalam grafik berikut.
 rencana ke depan:
 - buat illutrasi, cari png logo virus, senjata dsb
 - 
+
+=========================================================
+Project Name : "Tracing Food Condition in Indonesia" 
+Authorized by : Satrio Adi Prawiro 
+
+Description:
+

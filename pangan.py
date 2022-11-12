@@ -160,8 +160,8 @@ if option == 'Pendahuluan dan Data' or option == '':
                 if mrkt == tymrk[h] and cmdty3 == jen_pan[i] and provc == popro[j]:
                         laslast = pd.read_excel('./'+tymrk[h].lower()+'/harga-pasar-'+tymrk[h].lower()+li_pgn[i])
                         llss = laslast.drop(['No.', '11/2022'], axis=1).melt('Provinsi', var_name='Periode(Bln)', value_name='Harga(Rp)')
+                        llss['Periode(Bln)']= pd.to_datetime(llss['Periode(Bln)'])
                         llss3 = llss[llss['Provinsi'] == popro[j]]
-                        llss3['Periode(Bln)']= pd.to_datetime(llss3['Periode(Bln)'])
                         
                         borak = alt.Chart(llss3).mark_line(point=alt.OverlayMarkDef(color="")
                                                    ).encode(
@@ -173,13 +173,11 @@ if option == 'Pendahuluan dan Data' or option == '':
                                                    
                         st.altair_chart(borak, use_container_width=True)
     
-    lsmax = llss3[llss3['Provinsi'] == provc]['Harga(Rp)'].max()
-    lsmin = llss3[llss3['Provinsi'] == provc]['Harga(Rp)'].min()
-    lsavg = llss3[llss3['Provinsi'] == provc]['Harga(Rp)'].mean()
+    lsmax = llss3['Harga(Rp)'].max()
+    lsmin = llss3['Harga(Rp)'].min()
+    lsavg = llss3['Harga(Rp)'].mean()
     
-    #if 
-
-    st.write("Pada Pasar "+tymrk[h]+" di Provinsi "+popro[j]+", harga pangan "+cmdty3+" yang tertinggi adalah Rp"+str(lsmax)+",00 dan harga terendahnya adalah Rp"+str(lsmin)+',00.')
+    st.write("Pada Pasar "+tymrk[h]+" di Provinsi "+popro[j]+", harga pangan "+cmdty3+" per kilogram yang tertinggi adalah Rp"+str(lsmax)+",00 dan harga terendahnya adalah Rp"+str(lsmin)+',00.')
     st.write("Rata-rata seharga Rp"+str(round(lsavg,2))+'.')
     
     
@@ -209,16 +207,17 @@ if option == 'Pendahuluan dan Data' or option == '':
             tbl.rename(columns = {'Nama':'Tahun'}, inplace = True)
 
             diagram = alt.Chart(tbl).mark_bar(size=20).encode(
-                x=tbl.columns[1]+':O', #'Nama:O',
-                y=tbl.columns[2], #"Nilai / Ton", +':Q'
+                x=tbl.columns[1]+':O',
+                y=tbl.columns[2],
                 tooltip=[tbl.columns[2]]
                 ).properties(width=650)
             
-            st.altair_chart(diagram)
+            st.altair_chart(diagram, use_container_width=True)
             
             st.write("Beberapa tahun terakhir ini, jenis pangan "+jen_pan[i]+" memproduksi paling tinggi "+str(tbl[tbl.columns[2]].max())+" dan paling rendah "+str(tbl[tbl.columns[2]].min())+'.')
             st.write('Dalam satuan '+tbl.columns[2]+', rata-rata produksinya adalah '+str(round(tbl[tbl.columns[2]].mean(),2))+'.')
 
+    '''__________________________'''
     '''## Analisa dan Model'''
     '''#### Grafik sebaran korelasi antara harga dengan produksi jenis pangan'''
     
@@ -251,7 +250,7 @@ if option == 'Pendahuluan dan Data' or option == '':
                         tooltip=['Komoditas','Tahun','Pasar','Harga','Produksi']
                         ).interactive()
                     
-                    st.altair_chart(halt)
+                    st.altair_chart(halt, use_container_width=True)
     
     
     
